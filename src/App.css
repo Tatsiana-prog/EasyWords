@@ -1,42 +1,58 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+@font-face {
+  font-family: 'Inter';
+  src: url('fonts/Inter/Inter-Regular.woff2') format('woff2'),
+       url('fonts/Inter/Inter-Regular.woff') format('woff'),
+       url('fonts/Inter/Inter-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
+:root {
+--blue-50:  #f2f7fc;
+--blue-100: #e2eef7;
+--blue-200: #cbe1f2;
+--blue-300: #a7cee9;
+--blue-400: ##7db4dd;
+--blue-500: #689fd5;
+--blue-600: #4b80c5;
+--blue-700: #416db4;
+--blue-800: #3a5a93;
+--blue-900: #334c75;
+--blue-950: #233048;
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+--brown-50:  #faf7f6;
+--brown-100: #f5eeeb;
+--brown-200: #f1e6e2;
+--brown-300: #e0c9c1;
+--brown-400: #cda99c;
+--brown-500: #b88b7b;
+--brown-600: #a27260;
+--brown-700: #875d4e;
+--brown-800: #714f43;
+--brown-900: #60463c;
+--brown-950: #32231d;
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
+--olive-50:  #f8faec;
+--olive-100: #eef3ce;
+--olive-200: #e2e8a0;
+--olive-300: #d5da6a;
+--olive-400: #cfcf40;
+--olive-500: #bfba33;
+--olive-600: #a4962a;
+--olive-700: #847124;
+--olive-800: #6e5b25;
+--olive-900: #5f4c24;
+--olive-950: #372a11;
 
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
+--red-50:  #fff2f1;
+--red-100: #fee6e5;
+--red-200: #fdcece;
+--red-300: #fba6a7;
+--red-400: #f77577;
+--red-500: #f1575f;
+--red-600: #dc2235;
+--red-700: #ba162a;
+--red-800: #9b162b;
+--red-900: #85162b;
+--red-950: #4a0712;
 }
