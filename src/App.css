@@ -6,13 +6,24 @@
   font-weight: normal;
   font-style: normal;
 }
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
 
 :root {
 --blue-50:  #f2f7fc;
 --blue-100: #e2eef7;
 --blue-200: #cbe1f2;
 --blue-300: #a7cee9;
---blue-400: ##7db4dd;
+--blue-400: #7db4dd;
 --blue-500: #689fd5;
 --blue-600: #4b80c5;
 --blue-700: #416db4;
@@ -55,4 +66,19 @@
 --red-800: #9b162b;
 --red-900: #85162b;
 --red-950: #4a0712;
+
+--text-color: #080808;
+--color-white: #ffffff;
+}
+
+#root {
+    font-family: 'Inter', sans-serif;
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+}
+.Wrapper {
+  width: 1440px;
+  padding: 0 60px;
+  margin: 0 auto;
 }

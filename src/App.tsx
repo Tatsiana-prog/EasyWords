@@ -1,9 +1,10 @@
 import './App.css'
+import { Header } from  '../src/components/Header/Header'
 function App() {
     return (
     <>
-      <div>
-        <h1>EasyWords</h1>
+      <div className='Wrapper'>
+        <Header/>
      </div>
     </>
   )
