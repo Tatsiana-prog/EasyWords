@@ -1,0 +1,58 @@
+.SectionDescription {
+    padding-top: 182px;
+    padding-bottom: 28px;
+    display: flex;
+}
+
+.DescriptionContent {
+    padding-top: 64px;
+    max-width: 799px;
+    text-align: left;
+}
+
+.DescriptionHeader{
+    margin-bottom: 84px;
+}
+
+.DescriptionSubtitle {
+    margin-top: 44px;
+    margin-bottom: 60px;
+    width: 762px;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.Buttons {
+    display: inline-flex;
+    column-gap: 44px;
+}
+
+.DescriptionListWrapper {
+    padding: 32px 28px 42px 28px;
+    width: 762px;
+    border-radius: 20px;
+    border: 1px #C2C2C2 solid;
+}
+
+.DescriptionList {
+    padding-left: 28px;
+    margin-top: 28px;
+}
+
+.DescriptionListTitle {
+    color: var(--blue-500)
+}
+.DescriptionListItem {
+    position: relative;
+}
+.DescriptionListItem::before {
+    position: absolute;
+    content: "";
+    top:50%;
+    left: -28px;
+    width: 14.05px;
+    height: 10.22px;
+    background: url(../../../public/images/icons/icon-check-blue.svg) no-repeat center;
+    background-size: cover;
+    transform: translateY(-50%);
+}
