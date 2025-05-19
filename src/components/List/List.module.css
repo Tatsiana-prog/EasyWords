@@ -1,0 +1,19 @@
+.List {
+    padding-left: 30px;
+}
+
+.ListItem {
+    position: relative;
+    text-align: left;
+}
+.ListItem::before {
+    position: absolute;
+    content: "";
+    top:50%;
+    left: -28px;
+    width: 14.05px;
+    height: 10.22px;
+    background: url(../../../public/images/icons/icon-check-blue.svg) no-repeat center;
+    background-size: cover;
+    transform: translateY(-50%);
+}

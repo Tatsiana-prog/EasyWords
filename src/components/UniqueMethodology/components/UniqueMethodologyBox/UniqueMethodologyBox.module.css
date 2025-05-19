@@ -1,0 +1,9 @@
+.UniqueMethodologyBox {
+  width: 195px;
+  height: 95px;
+  padding: 28px;
+  border-radius: 20px;
+  border: 2px var(--blue-500) solid;
+  font-size: 24px;
+  font-weight: 900;
+}

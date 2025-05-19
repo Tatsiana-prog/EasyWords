@@ -1,0 +1,114 @@
+.SectionUniqueMethodology {
+    padding-top: 28px;
+    padding-bottom: 64px;
+}
+
+.UniqueMethodologyRow1 {
+    margin-top: 56px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    column-gap: 85px;
+    margin-bottom: 64px;
+}
+
+.UniqueMethodologyRow2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 45px;
+}
+
+.UniqueMethodologyInfo {
+    width: 60%;
+}
+
+.UniqueMethodologyListWrapper {
+    margin-top: 108px;
+    padding: 40px 48px;
+    background: #E2EEF7;
+    border-radius: 20px;
+    flex-direction: column;
+}
+
+.UniqueMethodologyList {
+    padding-left: 28px;
+    margin-top: 28px;
+    text-align: left;
+}
+
+.UniqueMethodologyListTitle {
+    font-weight: 900;
+    text-align: left;
+}
+
+.UniqueMethodologyListItem {
+    position: relative;
+}
+
+.UniqueMethodologyListItem::before {
+    position: absolute;
+    content: "";
+    top:50%;
+    left: -28px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--blue-500);
+    background-size: cover;
+    transform: translateY(-50%);
+}
+
+.UniqueMethodologyBoxesWrapper {
+    position: relative;
+    width: 466px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+    column-gap: 5px;
+    row-gap: 40px;
+    margin-bottom: 110px;
+}
+
+.UniquelogicalConnections {
+   width: 538px;
+   padding: 28px 32px 32px 32px;
+   border-radius: 20px;
+   border: 1px #C2C2C2 solid;
+}
+
+.UniqueMethodologyArrowCenter {
+    position: absolute;
+    top:44%;
+    left: 44%;
+    transform: translate(-50%, -50%);
+    transform: rotate(152deg);
+}
+
+.UniquelogicalConnections img {
+    margin: 20px auto auto auto;
+}
+
+.UniqueMethodologyDifference {
+    padding-left: 60px;
+    width: 763px;
+}
+
+.UniqueMethodologyDifference p{
+    margin: 24px 0;
+}
+
+.UniqueMethodologyCodding {
+    width: 384px;
+    height: 209px;
+    padding: 28px 32px 36px 32px;
+    border-radius: 20px;
+    border: 2px #689FD5 solid;
+}
+
+.UniqueMethodologyCodding p{
+    margin-top: 16px;
+    text-align: center;
+    font-weight: 600;
+}
