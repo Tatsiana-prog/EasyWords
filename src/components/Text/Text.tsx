@@ -1,14 +1,10 @@
-import styles from '../Text/Text.module.css';
+import styles from "../Text/Text.module.css";
 
 interface TextProps {
-    children: React.ReactNode;
-    className?: string;
+  children: React.ReactNode;
+  className?: string;
 }
 
 export const Text: React.FC<TextProps> = ({ children, className }) => {
-    return (
-        <p className={`${styles.text} ${className}`}>
-            {children}
-        </p>
-    );
+  return <p className={`${styles.text} ${className}`}>{children}</p>;
 };

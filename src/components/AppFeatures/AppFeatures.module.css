@@ -1,0 +1,31 @@
+.SectionAppFeatures {
+  padding: 28px 0;
+  background: var(--blue-100);
+}
+
+.SectionAppFeatures h2 {
+  margin-bottom: 56px;
+}
+
+.AppFeaturesRow {
+  display: flex;
+  max-width: 1320px;
+  column-gap: 219px;
+  align-items: center;
+  margin: 0 auto;
+  margin-bottom: 60px;
+}
+.AppFeaturesRow:last-child {
+  margin-bottom: 0;
+}
+.AppFeaturesRowInfo {
+  width: 675px;
+}
+
+.AppFeaturesRowInfo h4 {
+  text-align: left;
+}
+
+.AppFeaturesRowInfo p {
+  margin: 24px 0;
+}
