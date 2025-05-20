@@ -1,19 +1,29 @@
 .List {
-    padding-left: 30px;
+  padding-left: 30px;
 }
 
 .ListItem {
-    position: relative;
-    text-align: left;
+  position: relative;
+  text-align: left;
 }
+
 .ListItem::before {
-    position: absolute;
-    content: "";
-    top:50%;
-    left: -28px;
-    width: 14.05px;
-    height: 10.22px;
-    background: url(../../../public/images/icons/icon-check-blue.svg) no-repeat center;
-    background-size: cover;
-    transform: translateY(-50%);
+  position: absolute;
+  content: "";
+  top: 50%;
+  left: -28px;
+  width: 14.05px;
+  height: 10.22px;
+  background-size: cover;
+  transform: translateY(-50%);
+}
+
+.ListItem.BlueIcon::before {
+  background: url(../../../public/images/icons/icon-check-blue.svg) no-repeat
+    center;
+}
+
+.ListItem.RedIcon::before {
+  background: url(../../../public/images/icons/icon-check-red.svg) no-repeat
+    center;
 }
