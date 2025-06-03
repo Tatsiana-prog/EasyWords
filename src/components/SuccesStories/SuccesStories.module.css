@@ -1,0 +1,10 @@
+.SectionSuccesStories {
+  padding: 39px 0 30px;
+}
+
+.SuccesStoriesHeader {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 40px;
+}

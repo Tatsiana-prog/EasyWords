@@ -1,0 +1,23 @@
+.JoinCommunityCards {
+    display: flex;
+    justify-content: center;
+    column-gap: 74px;
+}
+.JoinCommunityCards h4 {
+    margin: 0 auto;
+    width: 80%;
+    text-align: center;
+}
+
+.JoinCommunityCard {
+    width: 318px;
+    padding:28px  32px;
+    border-radius: 20px;
+    outline: 2px #C2C2C2 solid;
+    outline-offset: -2px;
+}
+.JoinCommunityCard span {
+    font-size: 44px;
+    font-weight: 800;
+    color:var(--blue-500);
+}

@@ -1,0 +1,90 @@
+.SectionPreOrderOffer {
+  padding: 30px 0 32px 0;
+}
+
+.SectionPreOrderOffer h5 {
+  text-align: left;
+  margin-bottom: 28px;
+}
+
+.PreOrderOfferHeader p {
+  margin: 36px 0 56px;
+  text-align: center;
+  font-weight: 500;
+}
+.PreOrderOfferBox {
+  display: flex;
+  justify-content: space-between;
+}
+.PreOrderOfferColumn:first-child {
+  width: 650px;
+}
+.PreOrderListWrapper {
+  padding: 32px 28px 40px;
+  border-radius: 20px;
+  border: 1px solid var(--color-grey);
+}
+.PreOrderListWrapper h4 {
+  margin-bottom: 28px;
+  text-align: left;
+}
+
+.PreOrderSchedule {
+  padding: 32px 89px;
+  border-radius: 20px;
+  border: 1px solid var(--color-grey);
+  text-align: left;
+}
+
+.PreOrderSchedule h4 {
+  color: var(--blue-500);
+  margin-bottom: 28px;
+  font-weight: 600;
+}
+.PreOrderScheduleContent {
+  padding-left: 40px;
+}
+.PreOrderSchedule h5 {
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.PreOrderScheduleBox {
+  position: relative;
+  margin-bottom: 76px;
+}
+
+.PreOrderScheduleBox:last-child {
+  margin-bottom: 0;
+}
+.PreOrderScheduleBox::before {
+  position: relative;
+  position: absolute;
+  content: "";
+  top: 10px;
+  left: -40px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--color-grey);
+}
+
+.PreOrderScheduleBox::after {
+  position: relative;
+  position: absolute;
+  content: "";
+  top: 38px;
+  left: -32px;
+  width: 4px;
+  height: 100px;
+  background: var(--color-grey);
+}
+
+.PreOrderScheduleBox:first-child::before,
+.PreOrderScheduleBox:first-child::after {
+  background: var(--blue-500);
+}
+
+.PreOrderScheduleBox:nth-child(3):after {
+  display: none;
+}

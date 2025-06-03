@@ -1,0 +1,24 @@
+:root {
+  --progress-percentage: 0;
+}
+
+.SuccesStoriesProgress p:nth-child(2) {
+  margin-bottom: 12px;
+}
+
+.SuccesStoriesProgressLine {
+  margin-top: 32px;
+  width: 100%;
+  height: 12px;
+  background: var(--blue-100);
+  border-radius: 20px;
+}
+
+.SuccesStoriesProgressFill {
+  height: 12px;
+  width: calc(var(--progress-percentage) * 1%);
+  background-color: var(--blue-600);
+  color: var(--color-white);
+  border-radius: 20px;
+  color: transparent;
+}

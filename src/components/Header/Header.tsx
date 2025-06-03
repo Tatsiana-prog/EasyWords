@@ -6,11 +6,13 @@ import { Button } from "../Button/button";
 
 export const Header = () => (
   <header className={styles.Header}>
-    <Logo />
-    <div className={styles.HeaderBox}>
-      <Navigation />
-       <Button variant="white" text="Предзаказ сейчаc" />
-      <MenuIcon />
+    <div className={styles.HeaderRow}>
+      <Logo />
+      <div className={styles.HeaderBox}>
+        <Navigation />
+        <Button variant="white" text="Предзаказ сейчаc" />
+        <MenuIcon />
+      </div>
     </div>
   </header>
 );

@@ -1,0 +1,25 @@
+.FooterFormWrapper h4 {
+    margin-bottom: 20px;
+}
+
+.FormInput {
+  width: 315px;
+  padding: 20px 32px;
+  border-radius: 20px;
+  border: 2px solid var(--blue-500);
+}
+.FooterFormBox {
+    display: flex;
+    column-gap: 20px;
+}
+
+.FooterInputSubmit {
+    width: 203px;
+    height: 62px;
+    border-radius: 20px;
+    background: var(--blue-950);
+    color:var(--blue-100);
+    font-size: 18px;
+    font-weight: 500;
+    font-family: "Inter";
+}

@@ -1,11 +1,4 @@
-@font-face {
-  font-family: 'Inter';
-  src: url('fonts/Inter/Inter-Regular.woff2') format('woff2'),
-       url('fonts/Inter/Inter-Regular.woff') format('woff'),
-       url('fonts/Inter/Inter-Regular.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
+
 *,
 *::before,
 *::after {
@@ -70,14 +63,16 @@ ul {
 
 --text-color: #080808;
 --color-white: #ffffff;
+--color-grey: #c2c2c2;
 }
 
 #root {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Inter';
     width: 100%;
     margin: 0 auto;
     text-align: center;
 }
+
 .Wrapper {
   width: 1440px;
   padding: 0 60px;

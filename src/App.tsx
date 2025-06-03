@@ -1,22 +1,20 @@
-import './App.css'
-import { Header } from  '../src/components/Header/Header'
-import { AppDescription } from  '../src/components/AppDescription/AppDescription'
-import { UniqueMethodology } from './components/UniqueMethodology/UniqueMethodology'
-import { AppFeatures } from './components/AppFeatures/AppFeatures'
-import { Tariffs } from './components/Tariffs/Tariffs'
+import "./App.css";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { FormProvider } from "./components/PreOrderOffer/components/FormContext/FormContext"; // путь поправь под себя
+import { Home } from "./components/Pages/Home/Home";
+import { UserProfile } from "./components/Pages/UserProfile/UserProfile";
+
+
 function App() {
-    return (
-    <>
-      <div className='Wrapper'>
-        <Header/>
-        <AppDescription/>
-        <UniqueMethodology/>
-      </div>
-        <AppFeatures/>
-       <div className='Wrapper'>
-        <Tariffs/>
-      </div>
-    </>
-  )
+  return (
+    <Router>
+      <FormProvider>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/UserProfile" element={<UserProfile />} />
+        </Routes>
+      </FormProvider>
+    </Router>
+  );
 }
-export default App
+export default App;

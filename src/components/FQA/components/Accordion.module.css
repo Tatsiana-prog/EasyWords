@@ -1,0 +1,21 @@
+.AccordionItem {
+  padding: 25.5px 40px;
+  border-radius: 20px;
+  background: var(--blue-100);
+  margin-bottom: 32px;
+  text-align: left;
+}
+.AccordionItemQuestion {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 21.5px;
+}
+.Arrow {
+  display: inline-block;
+  transition: transform 0.6s ease;
+  margin-left: 10px;
+}
+
+.Arrow.Open {
+  transform: rotate(180deg);
+}

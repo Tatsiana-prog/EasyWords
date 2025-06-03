@@ -5,14 +5,19 @@
     left: 0;
     width: 100%;
     padding: 36px 60px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     background: var(--blue-100);
     border-bottom-right-radius: 20px;
     border-bottom-left-radius: 20px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     z-index: 10;
+}
+
+.HeaderRow {
+    max-width: 1320px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
 }
 
 .HeaderBox {

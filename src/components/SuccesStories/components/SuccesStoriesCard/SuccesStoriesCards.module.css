@@ -1,0 +1,63 @@
+.SuccesStoriesCardsWrapper {
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+  width: 100%;
+  margin-bottom: 52px;
+}
+
+.SuccesStoriesCard {
+  display: flex;
+  justify-content: space-between;
+  padding: 28px 40px;
+  background: var(--blue-100);
+  border-radius: 20px;
+  align-items: center;
+}
+
+.SuccesStoriesCardContent {
+  display: flex;
+  column-gap: 20px;
+  align-items: center;
+  font-size: 18px;
+  font-weight: 500;
+}
+.SuccesStoriesCardImage {
+  height: 100%;
+}
+.SuccesStoriesCardDecs h5 {
+  margin-bottom: 12px;
+  text-align: left;
+}
+
+.SuccesStoriesYear {
+  position: relative;
+  padding-left: 22px;
+}
+
+.SuccesStoriesYear::before {
+  position: absolute;
+  content: "";
+  width: 8px;
+  height: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 6px;
+  border-radius: 50%;
+  background: var(--blue-500);
+}
+
+.SuccesStoriesCardBox {
+  padding: 10px 20px;
+  background: var(--olive-300);
+  border-radius: 12px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  display: inline-flex;
+  font-weight: 600;
+}
+.Avatar {
+  width: 55px;
+  height: 55px;
+}

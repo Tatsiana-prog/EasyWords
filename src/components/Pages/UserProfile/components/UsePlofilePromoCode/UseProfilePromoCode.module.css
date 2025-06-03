@@ -1,0 +1,22 @@
+.UseProfilePromoCode {
+  padding: 28px 32px 32px 32px;
+  margin: 32px 0 28px 0;
+  border-radius: 20px;
+  background: var(--blue-100);
+  border: 1px solid var(--color-grey);
+}
+
+.UseProfilePromoCode p {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.UseProfilePromoData {
+  font-size: 44px;
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+  column-gap: 22.33px;
+  align-items: center;
+  cursor: pointer;
+}
