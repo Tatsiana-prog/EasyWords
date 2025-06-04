@@ -1,0 +1,21 @@
+.ButtonsShare {
+  margin-top: 28px;
+  display: inline-flex;
+  justify-content: center;
+  column-gap: 15px;
+  border-radius: 28px;
+  animation: FadeIn 0.7s ease-in;
+}
+.ButtonsShare p {
+  margin-bottom: 0;
+}
+
+@keyframes FadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}

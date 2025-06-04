@@ -1,11 +1,8 @@
 import styles from "../UserProfile/UserProfile.module.css";
-
 import { Header } from "../../Header/Header";
 import { Footer } from "../../Footer/Footer";
 import { Text } from "../../Text/Text";
-
 import { DownloadAppButton } from "../../DownloadAppButton/DownloadAppButton";
-
 import { UserProfilePromoCode } from "../UserProfile/components/UsePlofilePromoCode/UseProfilePromoCode";
 import { Chances } from "../../Chances/Chances";
 import { PreOrderFormWithDefault } from "../UserProfile/PreOrderFormWithDefault";
