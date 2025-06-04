@@ -1,35 +1,35 @@
 .SectionUseProfile {
-    padding: 177px 0 64px;
+  padding: 177px 0 64px;
 }
 
 .SectionUseProfile h1 {
-    text-align: center;
+  text-align: center;
 }
 
 .SectionUseProfile h4 {
-    font-size: 24px;
-    text-align: left;
+  font-size: 24px;
+  text-align: left;
 }
 
 .UseProfileRow {
-    margin-top: 56px;
-    display: flex;
-    column-gap: 117px;
+  margin-top: 56px;
+  display: flex;
+  column-gap: 117px;
 }
 
 .UseProfileRow form {
-    gap: 18px;
+  gap: 18px;
 }
 
 .UseProfileColumn {
-    max-width: 650px;
+  max-width: 650px;
 }
 
 .UseProfileColumn Button {
-    flex-direction: row-reverse;
-    width: 100%;
+  flex-direction: row-reverse;
+  width: 100%;
 }
 
 .UseProfileColumn p {
-    margin-top: 24px;
+  margin-top: 24px;
 }

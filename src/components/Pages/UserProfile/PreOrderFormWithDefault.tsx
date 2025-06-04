@@ -9,7 +9,7 @@ import type { FormData } from "../../PreOrderOffer/components/FormContext/FormCo
 const IMAGE_API_URL = "https://test.easywordsapp.com/api/subscriptions";
 const id = "6";
 const TOKEN =
-  "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsImF1ZCI6WyJmYXN0YXBpLXVzZXJzOmF1dGgiXSwiZXhwIjoxNzQ4OTUzNzk2fQ.pkPxO1qbIZLd7xvJGpDK5GSEgKQQ112j8fYOmKwtorA";
+  "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsImF1ZCI6WyJmYXN0YXBpLXVzZXJzOmF1dGgiXSwiZXhwIjoxNzQ5MDQ1NzE1fQ.sdwoXEeQyflEzVXGKLsvxCnyxuYD8X67U59L1-RlmNI";
 
 export const PreOrderFormWithDefault = () => {
   const { formData } = useFormContext();
@@ -76,9 +76,41 @@ export const PreOrderFormWithDefault = () => {
   };
 
   const onSubmit = (data: FormData) => {
-    console.log("Submitted from profile:", data);
+    console.log("Отправлено из профиля:", data);
   };
 
+  const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.files) {
+      const file = event.target.files[0];
+      if (file) {
+        const objectUrl = URL.createObjectURL(file);
+        setImageSrc(objectUrl);
+
+        uploadImage(file);
+      }
+    }
+  };
+
+  const uploadImage = async (file: File) => {
+    const formData = new FormData();
+    formData.append("avatar", file);
+
+    try {
+      const response = await axios.post(
+        `${IMAGE_API_URL}/${id}/avatar`,
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${TOKEN}`,
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      console.log("Изображение успешно загружено на сервер:", response.data);
+    } catch (error) {
+      console.error("Ошибка загрузки изображения на сервер:", error);
+    }
+  };
   return (
     <div className={styles.PreOrderOfferFormWrapper}>
       <h4>Ваши данные</h4>
@@ -146,6 +178,17 @@ export const PreOrderFormWithDefault = () => {
           />
           <div className={styles.Avatar}>
             {imageSrc && <img src={imageSrc} alt="Аватар подписки" />}
+
+            <label htmlFor="fileInput" className={styles.ImageChangeButton}>
+              изменить фото
+            </label>
+            <input
+              id="fileInput"
+              type="file"
+              accept="image/*"
+              style={{ display: "none" }}
+              onChange={handleImageChange}
+            />
           </div>
           <div className={styles.TextError}>
             {errors.tel && <span>{errors.tel.message}</span>}

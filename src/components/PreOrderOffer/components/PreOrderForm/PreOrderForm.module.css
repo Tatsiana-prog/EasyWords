@@ -18,25 +18,14 @@
   text-align: left;
 }
 
-.Avatar{
-  width: 60px;
-  height: 60px;
- 
-}
 
-.Avatar img {
-  width: 60px;
-  height: 60px;
-  object-fit: cover;
-  border-radius: 50%;
-}
+
 .FormBox::before {
   content: "∗";
   position: absolute;
   color: var(--red-700);
   left: 0;
   top: 10px;
-  /* другие стили */
   display: block;
   transition: opacity 0.3s ease;
 }
@@ -333,4 +322,25 @@ textarea {
 }
 
 /*PreOrderFormWithDefault*/
+.Avatar{
+  height: 59px;
+ display: flex;
+ flex-direction: column;
+ justify-content: center;
+ gap:7px;
+}
 
+.Avatar img {
+  width: 40px;
+  height: 40px;
+  margin: 0 auto;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.ImageChangeButton {
+  cursor: pointer;
+  font-size: 12px;
+  line-height: 1;
+  text-align: center;
+}
