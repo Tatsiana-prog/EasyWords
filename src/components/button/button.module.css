@@ -1,37 +1,71 @@
+button {
+  background: transparent;
+  border: none;
+}
+
+button:hover {
+  transition: all 0.3s ease-in;
+}
 .blue {
-  height: 62px;
   padding: 20px 32px;
+  height: 62px;
   background: var(--blue-500);
   border-radius: 20px;
   border: 2px var(--blue-500) solid;
   display: inline-flex;
   column-gap: 13px;
   justify-content: center;
+  align-items: center;
   font-family: "Inter", sans-serif;
-  font-size: 18px;
   font-weight: 500;
   color: white;
   cursor: pointer;
 }
 
+.blue:hover {
+  background: var(--blue-600);
+}
+
+.blue:active {
+  background: var(--blue-700);
+}
+
 .white {
-  height: 62px;
   padding: 20px 32px;
+  height: 62px;
   background: white;
   border-radius: 20px;
   border: 2px var(--blue-500) solid;
   display: inline-flex;
   column-gap: 13px;
   justify-content: center;
+  align-items: center;
   font-family: "Inter", sans-serif;
-  font-size: 18px;
   font-weight: 500;
   color: var(--blue-950);
   cursor: pointer;
 }
 
+.white:hover {
+  background: var(--blue-100);
+}
+
+.white:active {
+  background: var(--blue-200);
+}
+
 @media (max-width: 768px) {
   .Button {
     display: none;
+  }
+}
+.hidden {
+  display: none;
+}
+
+@media (max-width: 575px) {
+  .blue, .white {
+    font-size: 14px;
+    padding: 16px 32px;
   }
 }

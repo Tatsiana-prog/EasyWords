@@ -1,7 +1,7 @@
 import styles from "../AppDescription/AppDescription.module.css";
 import ImgDesc from "../../../public/images/image-desc.webp";
 
-import { Button } from "../Button/button";
+import { ButtonLink } from "../ButtonLink/ButtonLink";
 
 export const AppDescription = () => (
   <section className={styles.SectionDescription}>
@@ -16,8 +16,16 @@ export const AppDescription = () => (
           методом логического кодирования!
         </p>
         <div className={styles.Buttons}>
-          <Button variant="blue" text="Предзаказ сейчас (-20%)" />
-          <Button variant="white" text="Узнать больше" />
+          <ButtonLink
+            to="#Preorderoffer"
+            variant="blue"
+            text="Предзаказ сейчас (-20%)"
+          />
+          <ButtonLink
+            to="#UniqueMethodology"
+            variant="white"
+            text="Узнать больше"
+          />
         </div>{" "}
       </div>
       <div className={styles.DescriptionListWrapper}>

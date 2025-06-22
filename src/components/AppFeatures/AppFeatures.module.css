@@ -15,11 +15,45 @@
   margin: 0 auto;
   margin-bottom: 60px;
 }
+
+@media (max-width: 1199px) {
+  .AppFeaturesRow {
+    column-gap: 50px;
+    justify-content: center;
+    padding: 0 60px;
+  }
+  .AppFeaturesRowInfo {
+    width: 50%;
+  }
+}
+
+@media (max-width: 992px) {
+  .AppFeaturesRow {
+    flex-direction: column;
+    row-gap: 25px;
+  }
+  .AppFeaturesImage {
+    margin-left: 0;
+    margin-right: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .AppFeaturesRowInfo {
+    max-width: 100%;
+  }
+  .AppFeaturesRow {
+    padding: 0 30px;
+  }
+}
+
 .AppFeaturesRow:last-child {
   margin-bottom: 0;
 }
 .AppFeaturesRowInfo {
   width: 675px;
+  margin-left: 0;
+  margin-right: auto;
 }
 
 .AppFeaturesRowInfo h4 {
@@ -28,4 +62,34 @@
 
 .AppFeaturesRowInfo p {
   margin: 24px 0;
+}
+
+@media (max-width: 575px) {
+  .SectionAppFeatures {
+    padding: 32px 0;
+  }
+  .SectionAppFeatures h2 {
+    margin-bottom: 20px;
+  }
+  .AppFeaturesRow {
+    padding: 0 20px;
+    margin-bottom: 120px;
+  }
+  .AppFeaturesImage {
+    width: 268px;
+    height: 274px;
+  }
+  .AppFeaturesImage:last-child {
+    height: 150px;
+  }
+  .AppFeaturesImage img {
+    width: 268px;
+    object-fit: contain;
+  }
+  .AppFeaturesRow:last-child {
+    margin-top: 210px;
+  }
+  .AppFeaturesRowInfo p {
+    margin: 16px 0px;
+  }
 }

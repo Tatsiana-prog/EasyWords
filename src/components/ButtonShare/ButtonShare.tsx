@@ -6,7 +6,6 @@ import {
   ViberShareButton,
   TelegramShareButton,
 } from "react-share";
-import { Text } from "../Text/Text";
 import IconFb from "../../../public/images/icons/icon-fb.png";
 import IconTwitter from "../../../public/images/icons/icon-twitter.png";
 import IconWhatsApp from "../../../public/images/icons/icon-whatsapp.png";
@@ -14,30 +13,31 @@ import IconViber from "../../../public/images/icons/icon-viber.png";
 import IconTelegram from "../../../public/images/icons/icon-telegram.png";
 
 export const ButtonShare = () => {
-  const shareUrl = "http://localhost:5173/UserProfile";
-  const title = "EasyWords";
+  const shareUrl = "https://easywordsapp.com";
+  const title =
+    "🚀 Изучай английские слова в 3 раза быстрее с EasyWords: флэш-карточки + логическое кодирование!";
 
   return (
     <div className={styles.ButtonsShare}>
       <TelegramShareButton url={shareUrl} title={title}>
         <img src={IconTelegram} alt="icon"></img>
-        <Text>Telegram</Text>
+        <h6>Telegram</h6>
       </TelegramShareButton>
       <FacebookShareButton url={shareUrl} title={title}>
         <img src={IconFb} alt="icon"></img>
-        <Text>Facebook</Text>
+        <h6>Facebook</h6>
       </FacebookShareButton>
       <TwitterShareButton url={shareUrl} title={title}>
         <img src={IconTwitter} alt="icon"></img>
-        <Text>Twitter</Text>
+        <h6>Twitter</h6>
       </TwitterShareButton>
       <WhatsappShareButton url={shareUrl} title={title}>
         <img src={IconWhatsApp} alt="icon"></img>
-        <Text>WhatsApp</Text>
+        <h6>WhatsApp</h6>
       </WhatsappShareButton>
       <ViberShareButton url={shareUrl} title={title}>
         <img src={IconViber} alt="icon"></img>
-        <Text>Viber</Text>
+        <h6>Viber</h6>
       </ViberShareButton>
     </div>
   );

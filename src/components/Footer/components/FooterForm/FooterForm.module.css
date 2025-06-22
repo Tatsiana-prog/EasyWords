@@ -23,3 +23,20 @@
     font-weight: 500;
     font-family: "Inter";
 }
+
+@media (max-width: 1199px) {
+  .FooterFormBox {
+    flex-direction: column;
+    gap:25px;
+  }
+  .FooterInputSubmit {
+    width: 315px;}
+}
+@media (max-width: 575px) {
+ .FormInput {
+    width: 100%;
+  }
+  .FooterInputSubmit {
+    width: 100%;
+  }
+}

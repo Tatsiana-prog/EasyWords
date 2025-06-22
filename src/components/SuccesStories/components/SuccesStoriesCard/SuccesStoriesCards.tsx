@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import styles from "./SuccesStoriesCards.module.css";
-import axios from "axios";
+import styles from "../SuccesStoriesCard/SuccessStoriesCard.module.css";
+import api from "../../../../api/api";
 
 interface Winner {
   id: number;
@@ -15,81 +15,125 @@ interface WinnerAvatar {
   img: string;
 }
 
-export const SuccesStoriesCards: React.FC = () => {
+export const SuccessStoriesCards: React.FC = () => {
   const [winners, setWinners] = useState<Winner[]>([]);
-  const [winnerAvatars, setWinnersAvatars] = useState<WinnerAvatar[]>([]);
+  const [winnerAvatars, setWinnerAvatars] = useState<Record<number, string>>({});
   const [error, setError] = useState<string | null>(null);
+  const [avatarError, setAvatarError] = useState<string | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const fetchWinners = async () => {
-      try {
-        const response = await axios.get<{ winners: Winner[] }>(
-          "https://test.easywordsapp.com/api/services/winners_yearly",
-          {
-            headers: {
-              accept: "application/json",
-              Authorization: `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsImF1ZCI6WyJmYXN0YXBpLXVzZXJzOmF1dGgiXSwiZXhwIjoxNzQ4ODQ3NzY2fQ.La4dX-JKmlfP9T6NBejJ2U9L7YuUdPh6kncNt-kUb2Q`,
-            },
-          }
-        );
+      setLoading(true);
+      setError(null);
+      setAvatarError(null);
 
-        setWinners(response.data.winners);
-        fetchWinnersAvatars(response.data.winners);
-      } catch (error) {
-        console.error("Error fetching winners:", error);
-        setError("Failed to fetch winners data");
+      const token = localStorage.getItem("authToken");
+      if (!token) {
+        setError("Вы не авторизованы.");
+        setLoading(false);
+        return;
       }
-    };
 
-    const fetchWinnersAvatars = async (winners: Winner[]) => {
       try {
-        const avatarRequests = winners.map(() =>
-          axios.get<WinnerAvatar>(
-            `https://test.easywordsapp.com/api/subscriptions/{id}/avatar`,
-            {
-              headers: {
-                accept: "application/json",
-                Authorization: `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsImF1ZCI6WyJmYXN0YXBpLXVzZXJzOmF1dGgiXSwiZXhwIjoxNzQ4ODQ3NzY2fQ.La4dX-JKmlfP9T6NBejJ2U9L7YuUdPh6kncNt-kUb2Q`,
-              },
-            }
-          )
-        );
+        const response = await api.get<{ winners: Winner[] }>("/services/winners_yearly", {
+          headers: {
+            accept: "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        });
 
-        const avatarResponses = await Promise.all(avatarRequests);
-        const avatars = avatarResponses.map((res) => res.data);
-        setWinnersAvatars(avatars);
-      } catch (error) {
-        console.error("Error fetching winners avatars:", error);
-        setError("Failed to fetch winners avatars data");
+        const fetchedWinners = response.data.winners;
+        setWinners(fetchedWinners);
+
+        // Загружаем аватары победителей
+        fetchWinnersAvatars(fetchedWinners, token);
+      } catch (error: any) {
+        console.error("Ошибка при загрузке победителей:", error);
+
+        if (error.response?.status === 401) {
+          setError("Сессия истекла. Пожалуйста, войдите снова.");
+        } else {
+          setError("Не удалось загрузить список победителей");
+        }
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchWinners();
   }, []);
 
+  const fetchWinnersAvatars = async (winners: Winner[], token: string) => {
+    try {
+      const avatarRequests = winners.map((winner) =>
+        api.get<WinnerAvatar>(`/subscriptions/${winner.id}/avatar`, {
+          headers: {
+            accept: "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        })
+      );
+
+      const avatarResponses = await Promise.all(avatarRequests);
+      const avatarsMap: Record<number, string> = {};
+
+      avatarResponses.forEach((res, idx) => {
+        avatarsMap[winners[idx].id] = res.data.img;
+      });
+
+      setWinnerAvatars(avatarsMap);
+    } catch (error) {
+      console.error("Ошибка при загрузке аватаров:", error);
+      setAvatarError("Не удалось загрузить аватары победителей");
+    }
+  };
+
+  const formatDate = (dateStr: string | null): string => {
+    if (!dateStr) return "";
+    const date = new Date(dateStr);
+    return isNaN(date.getTime())
+      ? ""
+      : date.toLocaleDateString("ru-RU", {
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        });
+  };
+
+  if (loading) {
+    return <div>Загрузка...</div>;
+  }
+
   return (
-    <div className={styles.SuccesStoriesCardsWrapper}>
+    <div className={styles.SuccessStoriesCardsWrapper}>
       {error && <div className={styles.ErrorMessage}>{error}</div>}
-      {winners.map((winner, index) => (
-        <div key={winner.id} className={styles.SuccesStoriesCard}>
-          <div className={styles.SuccesStoriesCardContent}>
+      {avatarError && <div className={styles.ErrorMessage}>{avatarError}</div>}
+
+      {!error && winners.length === 0 && (
+        <p className={styles.NoWinnersMessage}>Победителей пока нет.</p>
+      )}
+
+      {winners.map((winner) => (
+        <div key={winner.id} className={styles.SuccessStoriesCard}>
+          <div className={styles.SuccessStoriesCardContent}>
             <img
               className={styles.Avatar}
-              src={winnerAvatars[index]?.img}
-              alt="avatar"
+              src={winnerAvatars[winner.id] || "/placeholder-avatar.jpg"}
+              alt={`${winner.name} avatar`}
             />
-            <div className={styles.SuccesStoriesCardDecs}>
+            <div className={styles.SuccessStoriesCardDesc}>
               <h5>{winner.name}</h5>
               <p>
-                <span>{winner.gender === "MALE" ? "выиграл" : "выиграла"}</span>
-                <span>{winner.gifted_at}</span>
-                <span className={styles.SuccesStoriesYear}>
-                  Годовая подписка
-                </span>
+                <span>{winner.gender === "MALE" ? "выиграл" : "выиграла"}</span>{" "}
+                {winner.gifted_at && (
+                  <span>{formatDate(winner.gifted_at)}</span>
+                )}{" "}
+                <span className={styles.SuccessStoriesYear}>Годовая подписка</span>
               </p>
             </div>
           </div>
-          <div className={styles.SuccesStoriesCardBox}>Бесплатно 1 год</div>
+          <div className={styles.SuccessStoriesCardBox}>Бесплатно 1 год</div>
         </div>
       ))}
     </div>

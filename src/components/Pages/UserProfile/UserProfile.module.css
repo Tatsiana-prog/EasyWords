@@ -6,9 +6,9 @@
   text-align: center;
 }
 
-.SectionUseProfile h4 {
+.UseProfileColumn h4 {
   font-size: 24px;
-  text-align: left;
+  text-align: center;
 }
 
 .UseProfileRow {
@@ -29,7 +29,48 @@
   flex-direction: row-reverse;
   width: 100%;
 }
-
 .UseProfileColumn p {
   margin-top: 24px;
 }
+
+
+@media (max-width: 1199px) {
+  .UseProfileRow {
+    flex-direction: column;
+    row-gap: 30px;
+    justify-content: center;
+    margin-top: 24px;
+  }
+  .UseProfileColumn {
+    margin: 0 auto;
+    max-width: 100%;
+    text-align: left;
+  }
+  .SectionUseProfile h1 {
+  text-align: left;
+  }
+ .SectionUseProfile .UseProfilePromoCode h4 {
+  text-align: center;
+ }
+}
+
+@media (max-width: 575px) { 
+  .SectionUseProfile h3 {
+  font-size: 16px;
+  text-align: left;
+  }
+  .UseProfileColumn p {
+    margin-top: 16px;
+  }
+  .UseProfileColumn  {
+    width: 100%;
+  }
+  .SectionUseProfile h4 {
+   font-size: 16px;
+   text-align: center;
+  }
+}
+
+
+
+

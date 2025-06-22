@@ -1,0 +1,36 @@
+.SectionPrivacyPolicy {
+    padding: 200px 0 60px;
+    text-align: left;
+}
+
+.SectionPrivacyPolicy h1{
+   width: 50%;
+   margin-bottom: 30px;
+   font-size: 30px;
+   line-height: 1.2;
+   text-align: left;
+}
+
+.SectionPrivacyPolicy p{
+    margin-bottom: 25px;
+}
+
+.SectionPrivacyPolicy ul {
+    margin: 20px 0;
+    padding-left: 50px;
+    list-style-type: disc;
+    font-size: 18px;
+}
+
+.TextStrong {
+    font-size: 18px;
+    font-weight: 600;
+}
+@media (max-width: 768px) {
+  .SectionPrivacyPolicy {
+   padding-top: 170px;
+  }
+
+ .SectionPrivacyPolicy h1 {
+   width: 100%;
+  }}

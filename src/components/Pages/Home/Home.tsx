@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
-import { Header } from "../../Header/Header";
+import { HeaderMain } from "../../Header/HeaderMain";
 import { AppDescription } from "../../AppDescription/AppDescription";
 import { UniqueMethodology } from "../../UniqueMethodology/UniqueMethodology";
 import { AppFeatures } from "../../AppFeatures/AppFeatures";
@@ -20,11 +20,9 @@ export const Home: React.FC = () => {
       const id = location.hash.replace("#", "");
       const element = document.getElementById(id);
       if (element) {
-        // Плавно скроллим к нужному элементу
         element.scrollIntoView({ behavior: "smooth" });
       }
     } else {
-      // Если нет хеша, скроллим наверх
       window.scrollTo(0, 0);
     }
   }, [location]);
@@ -32,7 +30,7 @@ export const Home: React.FC = () => {
   return (
     <>
       <div className="Wrapper">
-        <Header />
+        <HeaderMain />
         <AppDescription />
         <UniqueMethodology id="UniqueMethodology" />
       </div>
@@ -41,10 +39,10 @@ export const Home: React.FC = () => {
         <Tariffs id="Tariffs" />
         <JoinCommunity />
         <SuccesStories />
-        <PreOrderOffer id="PreOrderOffer" />
+        <PreOrderOffer />
         <FQA id="FAQ" />
       </div>
-      <Footer />
+      <Footer id="Footer" />
     </>
   );
 };

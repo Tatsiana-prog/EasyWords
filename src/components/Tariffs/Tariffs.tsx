@@ -4,6 +4,7 @@ import { Text } from "../Text/Text";
 import { Button } from "../Button/button";
 import { TariffsBoxList1 } from "../Tariffs/components/TariffsBoxList1/TariffsBoxList1";
 import { TariffsBoxList2 } from "../Tariffs/components/TariffsBoxList2/TariffsBoxList2";
+import {ButtonLink } from "../ButtonLink/ButtonLink";
 
 interface TariffsProps {
   id?: string;
@@ -40,7 +41,11 @@ export const Tariffs: React.FC<TariffsProps> = ({ id }) => {
           </p>
           <Text>Идеально подходит для краткосрочных целей обучения</Text>
           <TariffsBoxList1 />
-          <Button variant="white" text="Предварительный заказ" />
+          <ButtonLink
+                   to="#Preorderoffer"
+                   variant="white"
+                   text="Предзаказ сейчас"
+                 />
         </div>
         <div className={styles.TariffsBox}>
           <h3>Годовая подписка</h3>
@@ -51,7 +56,11 @@ export const Tariffs: React.FC<TariffsProps> = ({ id }) => {
           </p>
           <Text>Лучшее соотношение цены и качества для серьезных учеников</Text>
           <TariffsBoxList2 />
-          <Button variant="white" text="Предварительный заказ" />
+          <ButtonLink
+                   to="#Preorderoffer"
+                   variant="white"
+                   text="Предзаказ сейчас"
+                 />
           <div className={styles.TariffsBoxSale}>Скидка 20%</div>
         </div>
       </div>
@@ -62,7 +71,11 @@ export const Tariffs: React.FC<TariffsProps> = ({ id }) => {
           одного человека, который получит совершенно бесплатную годовую
           подписку
         </Text>
-        <Button variant="blue" text="Принять участие" />
+         <ButtonLink
+                  to="#Preorderoffer"
+                  variant="blue"
+                  text="Предзаказ сейчас"
+                />
       </div>
     </section>
   );

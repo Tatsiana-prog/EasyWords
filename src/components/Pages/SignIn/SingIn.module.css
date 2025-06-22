@@ -1,0 +1,16 @@
+.SectionSignIn {
+  padding: 200px 0 60px;
+}
+
+.SectionSignIn h1 {
+  text-align: center;
+  font-size: 44px;
+  margin-bottom: 32px;
+  letter-spacing: -1px;
+}
+
+@media (max-width: 768px) {
+   .SectionSignIn h1{
+      font-size: 30px;
+   }
+}

@@ -13,7 +13,7 @@ export const Button: React.FC<ButtonProps> = ({
   variant,
   text,
   children,
-}) => {
+}) => {  
   return (
     <button
       onClick={onClick}

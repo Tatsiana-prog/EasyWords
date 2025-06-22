@@ -31,7 +31,12 @@
   cursor: pointer;
   transition: all 0.3s ease-in;
 }
-
+@media (max-width: 575px) {
+  .TariffsBox {
+    width: 100%;
+    margin: 0 auto;
+  }
+}
 .TariffsBox:hover {
   outline: 4px var(--blue-500) solid;
 }
@@ -64,7 +69,7 @@
   right: 0;
   width: 57px;
   height: 2px;
-  background: red;
+  background: #ef1313;
   transform: rotate(-14deg);
 }
 
@@ -107,4 +112,51 @@
   margin-top: 20px;
   margin-bottom: 32px;
   text-align: center;
+  font-weight: 500;
+}
+@media (max-width: 992px) {
+  .TariffsBoxes {
+    flex-direction: column;
+    row-gap: 32px;
+    justify-content: center;
+  }
+}
+@media (max-width: 575px) {
+  .SectionTariffs {
+    padding-top: 30px;
+  }
+  .TariffsBox h3 {
+    width: 100%;
+    font-size: 20px;
+  }
+  .PriceSale {
+    font-size: 14px;
+  }
+  .Price {
+    font-size: 20px;
+  }
+  .TariffsBoxSubtitle {
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+  .TariffsBox ul {
+    margin: 20px 0;
+  }
+  .PriceSale::before {
+    right: 20px;
+    width: 50px;
+  }
+  .TariffsBoxSale {
+    font-size: 10px;
+    right: 24px;
+    top: 32px;
+    padding: 8px 12px;
+  }
+  .TariffsBox {
+    padding: 32px 24px;
+  }
+  .TariffsBox a {
+    width: 234px;
+    margin: 0 auto;
+  }
 }

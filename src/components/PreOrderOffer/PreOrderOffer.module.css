@@ -15,9 +15,15 @@
 .PreOrderOfferBox {
   display: flex;
   justify-content: space-between;
+  column-gap: 132px;
+}
+
+.PreOrderOfferColumn {
+  margin: 0 auto;
+  
 }
 .PreOrderOfferColumn:first-child {
-  width: 650px;
+width: 650px;
 }
 .PreOrderListWrapper {
   padding: 32px 28px 40px;
@@ -88,3 +94,23 @@
 .PreOrderScheduleBox:nth-child(3):after {
   display: none;
 }
+
+
+@media (max-width: 1199px) {
+  .PreOrderOfferBox {
+   flex-direction: column-reverse;
+   gap: 40px;
+   justify-content: center;
+  }
+  .PreOrderOfferColumn:first-child {
+    width: 100% ;
+  }
+}
+
+@media (max-width: 575px){
+  .PreOrderSchedule {
+   display: none;
+  }
+}
+
+

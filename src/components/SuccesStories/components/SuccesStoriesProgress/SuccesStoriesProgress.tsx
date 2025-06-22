@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import styles from "./SuccesStoriesProgress.module.css";
-import axios from "axios";
+import api from "../../../../api/api";
 
 export const SuccesStoriesProgress = () => {
   const [currentProgress, setCurrentProgress] = useState(55);
@@ -9,12 +9,11 @@ export const SuccesStoriesProgress = () => {
   useEffect(() => {
     const fetchProgress = async () => {
       try {
-        const response = await axios.get(
-          "https://test.easywordsapp.com/api/services/count",
+        const response = await api.get(
+          "/services/count",
           {
             headers: {
-              accept: "application/json",
-              Authorization: `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMiIsImF1ZCI6WyJmYXN0YXBpLXVzZXJzOmF1dGgiXSwiZXhwIjoxNzQ4MjYwNTc1fQ.VVLD0jJBNGFaoWSZxWWZ3EDmndOzAaTIUzVhQC_6hnw`,
+              accept: "application/json"
             },
           }
         );

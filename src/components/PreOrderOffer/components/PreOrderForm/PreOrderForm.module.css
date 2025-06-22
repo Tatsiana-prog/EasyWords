@@ -4,13 +4,20 @@
   padding: 32px 28px;
   border: 1px solid var(--color-grey);
   border-radius: 20px;
+  margin: 0 auto;
 }
 
 .Form {
   margin-top: 32px;
   display: flex;
   flex-direction: column;
-  row-gap: 32px;
+  row-gap: 18px;
+}
+
+.FormTitle {
+  display: flex;
+  align-items: center;
+  column-gap: 20px;
 }
 
 .FormBox {
@@ -18,7 +25,12 @@
   text-align: left;
 }
 
-
+.PasswordToggle {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+}
 
 .FormBox::before {
   content: "∗";
@@ -29,9 +41,15 @@
   display: block;
   transition: opacity 0.3s ease;
 }
+
+.FormBox.InputFilled input {
+  border: 2px solid var(--blue-500);
+}
+
 .FormBox.InputFilled::before {
   display: none;
 }
+
 .FormBox h4 {
   margin-bottom: 24px;
 }
@@ -40,10 +58,22 @@
   width: 100%;
   padding: 20px 32px;
   border-radius: 20px;
+  border: 2px solid var(--color-grey);
+}
+
+.FormInput:active {
   border: 2px solid var(--blue-500);
 }
+
 input::placeholder {
   font-size: 18px;
+}
+
+.FormInput:focus-visible {
+  border: 2px solid var(--blue-500);
+}
+input:focus {
+  border: 2px solid var(--blue-500);
 }
 
 .FormBox:first-child::before {
@@ -51,22 +81,31 @@ input::placeholder {
 }
 
 .FormBox:nth-child(2)::before {
-  left: 88px;
+  top: 10px;
+  left: 90px;
 }
 
 .FormBox:nth-child(3)::before {
-  display: none;
+  top: 5px;
+  left: 105px;
+}
+.FormBox:nth-last-of-type(4) {
+  display: flex;
+  flex-direction: column;
 }
 
 .FormBox:nth-child(4)::before {
-  top: 0px;
-  right: 105px;
-  left: auto;
+  top: 12px;
+  left: 185px;
 }
 
 .FormBox:nth-child(5)::before {
   top: 0px;
-  left: 105px;
+  left: 365px;
+}
+.FormBox:nth-child(6)::before {
+  top: 0px;
+  left: 110px;
 }
 
 .FormBox:nth-child(4) {
@@ -79,13 +118,12 @@ input::placeholder {
 }
 
 .FormBox:nth-child(3) {
-  margin-bottom: 0;
-  display: flex;
-  column-gap: 20px;
 }
 .FormBox:nth-child(3) input {
-  width: 214px;
-  text-align: center;
+  text-align: left;
+  margin-bottom: 0;
+}
+.FormBox:nth-child(4) input {
 }
 
 .label:nth-of-type(3) {
@@ -95,6 +133,7 @@ input::placeholder {
 .checkboxWrapper {
   margin: 10px 0;
 }
+
 .customRadio {
   position: relative;
   padding-left: 30px;
@@ -133,7 +172,7 @@ select {
   width: 100%;
   padding: 20px 32px;
   border-radius: 20px;
-  border: 2px solid var(--blue-500);
+  border: 2px solid var(--color-grey);
   text-align: left;
   font-size: 18px;
   color: #5e5e5e;
@@ -160,16 +199,20 @@ label {
 textarea {
   height: 144px;
   width: 100%;
+  padding: 20px 32px;
   border-radius: 20px;
-  border: 2px solid var(--blue-500);
+  border: 1px solid var(--color-grey);
 }
-
+textarea::placeholder {
+  font-size: 18px;
+  font-family: "Inter";
+}
 .IconSelect {
   display: block;
   width: 21px;
   height: 16.5px;
   background: url(/public/images/icons/icon-down-grey.svg) no-repeat center;
-  background-size: cover;
+  background-size: contain;
 }
 
 .SelectLabel {
@@ -189,12 +232,17 @@ textarea {
 }
 
 .customSelect select option {
-  padding: 30px 20px; /* Добавление паддингов к элементам option */
+  padding: 30px 20px;
 }
 
 /*radiobuttons*/
 .CustomRadioButtonsWrapper {
   display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.CustomRadioButtonsWrapper:nth-last-of-type(1) {
   flex-direction: column;
   gap: 18px;
 }
@@ -304,7 +352,6 @@ textarea {
   color: var(--red-700);
 }
 
-
 .InputSubmitDefault {
   height: 62px;
   width: 100%;
@@ -317,17 +364,16 @@ textarea {
   font-weight: 500;
   color: var(--text-color);
   cursor: pointer;
-  background:#D9D9D9;
-  border: 2px #D9D9D9 solid;
+  background: #d9d9d9;
+  border: 2px #d9d9d9 solid;
 }
 
-/*PreOrderFormWithDefault*/
-.Avatar{
+.Avatar {
   height: 59px;
- display: flex;
- flex-direction: column;
- justify-content: center;
- gap:7px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 7px;
 }
 
 .Avatar img {
@@ -343,4 +389,138 @@ textarea {
   font-size: 12px;
   line-height: 1;
   text-align: center;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 998;
+}
+.ErrorBox {
+  margin-top: 9px;
+  display: flex;
+  column-gap: 9px;
+  align-items: center;
+}
+
+.SignInFormWrapper {
+  width: 480px;
+  height: 375px;
+  margin: auto;
+}
+@media (max-width: 575px) {
+  .SignInFormWrapper {
+    width: 75%;
+  }
+}
+
+.SignInFormWrapper .Form {
+  width: 100%;
+}
+
+.SignInFormWrapper .FormBox::before,
+.ForgotPasswordFormWrapper .FormBox::before {
+  display: none;
+}
+
+.SignInFormWrapper form {
+  gap: 18px;
+  margin-bottom: 20px;
+}
+
+.SignInFormWrapper input[type="submit"] {
+  margin-top: 14px;
+}
+
+.ForgotPassword {
+  color: var(--blue-500);
+}
+
+.ForgotPasswordFormWrapper {
+  width: 480px;
+  margin: 0 auto;
+}
+@media (max-width: 575px) {
+  .ForgotPasswordFormWrapper {
+    width: 75%;
+  }
+}
+
+@media (max-width: 1199px) {
+  .PreOrderOfferFormWrapper {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .FormBox:nth-child(3)::before {
+    left: 80px;
+    top: 0;
+  }
+  .FormBox:nth-child(5)::before {
+    left: 275px;
+  }
+}
+
+@media (max-width: 575px) {
+  .PreOrderOfferFormWrapper {
+    width: 100%;
+  }
+  .FormInput {
+    padding: 16px 20px;
+  }
+  .FormInput::placeholder {
+    font-size: 14px;
+  }
+  .FormBox:nth-child(1)::before {
+    left: 55px;
+  }
+  .FormBox:nth-child(2)::before {
+    left: 70px;
+  }
+  .FormBox:nth-child(4)::before {
+    left: 140px;
+  }
+  .FormBox:nth-child(6)::before {
+    left: 80px;
+  }
+  .RadioButtonLabel {
+    font-size: 14px;
+  }
+  .IconSelect {
+    width: 12px;
+  }
+  select {
+    padding: 16px 20px;
+    font-size: 14px;
+  }
+  textarea {
+    padding: 16px 20px;
+    height: 124px;
+    font-size: 14px;
+  }
+  textarea::placeholder {
+    font-size: 14px;
+  }
+  .CheckboxLabel,
+  .CheckboxLabel a {
+    font-size: 12px;
+  }
+  .CheckboxLabel {
+    padding: 0 0 0 22px;
+  }
+  .CheckboxLabel a {
+    padding: 0;
+  }
+  .InputSubmit {
+    font-size: 14px;
+  }
+  .IconSelect {
+    right: 22px;
+  }
+  
 }

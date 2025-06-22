@@ -17,7 +17,6 @@
 .FooterSocialLinks {
   display: inline-flex;
   gap: 20.5px;
-
 }
 .FooterBox:first-child {
   width: 35%;
@@ -32,7 +31,9 @@
   align-items: center;
   column-gap: 14.2px;
 }
-.FooterLink:hover, .FooterLinkContact:hover, .FooterSocialLink:hover {
+.FooterLink:hover,
+.FooterLinkContact:hover,
+.FooterSocialLink:hover {
   transition: all 0.3s ease-in;
   opacity: 0.23;
 }
@@ -54,5 +55,30 @@
   margin-bottom: 12px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 992px) {
+  .FooterRow {
+    flex-direction: column;
+    gap: 26px;
+  }
+  .FooterBox {
+    width: 100%;
+  }
+  .FooterBox:first-child {
+    width: 100%;
+  }
+  .FooterBox:nth-child(2) {
+  width: 100%;
 }
+}
+
+@media (max-width: 575px) {
+  .FooterRow {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .Footer a {
+    padding: 0;
+  }
+}
+
+

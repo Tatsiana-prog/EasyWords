@@ -7,7 +7,7 @@ import IconShare from "../../../public/images/icons/icon-share.webp";
 
 interface ChancesProps {
   background: string;
-  variant: "BlueBg" | "WhiteBg"; // Добавляем вариант
+  variant: "BlueBg" | "WhiteBg";
 }
 
 export const Chances: React.FC<ChancesProps> = ({ variant }) => {

@@ -18,7 +18,7 @@ export const AppFeatures = () => (
         </Text>
         <AppFeaturesList1 />
       </div>
-      <div>
+      <div className={styles.AppFeaturesImage}>
         <img
           src="../../../public/images/image-feature-1.webp"
           alt="image"
@@ -34,7 +34,7 @@ export const AppFeatures = () => (
         </Text>
         <AppFeaturesList2 />
       </div>
-      <div>
+    <div className={styles.AppFeaturesImage}>
         <img
           src="../../../public/images/image-feature-2.webp"
           alt="image"
@@ -44,11 +44,13 @@ export const AppFeatures = () => (
     <div className={styles.AppFeaturesRow}>
       <div className={styles.AppFeaturesRowInfo}>
         <h4>Интервальное повторение</h4>
-        <Text>Не просто учите слова — закрепляйте их в долгосрочной памяти с помощью нашего механизма интервального повторения.
+        <Text>
+          Не просто учите слова — закрепляйте их в долгосрочной памяти с помощью
+          нашего механизма интервального повторения.
         </Text>
         <AppFeaturesList3 />
       </div>
-      <div>
+     <div className={styles.AppFeaturesImage}>
         <img
           src="../../../public/images/image-feature-3.webp"
           alt="image"

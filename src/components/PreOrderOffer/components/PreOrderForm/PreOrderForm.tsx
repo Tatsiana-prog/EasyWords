@@ -1,22 +1,33 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import classNames from "classnames";
-import { useFormContext } from "../../components/FormContext/FormContext";
+import axios from "axios";
+import { ApplicationAccept } from "../../../ApplicationAccept/ApplicationAccept";
+import IconError from "../../../../../public/images/icons/icon-error.png";
 import styles from "./PreOrderForm.module.css";
+import { Link } from "react-router-dom";
 
-interface FormData {
-  name: string;
-  email: string;
-  tel?: string;
-  tariff: string;
-  option: string;
-  textarea1: string;
-  textarea2?: string;
-  agreement: boolean;
+
+interface PreOrderFormProps {
+  id?: string;
 }
 
-export const PreOrderForm: React.FC = () => {
-  const { setFormData } = useFormContext();
+interface FormData {
+  email: string;
+  name: string;
+  phone?: string;
+  preferred_plan: "MONTHLY" | "YEARLY";
+  system_version: "ios" | "android";
+  gender: "MALE" | "FEMALE";
+  additional_features?: string;
+  comments?: string;
+  consent: boolean;
+  gifted_subscription_month: false;
+  gifted_subscription_year: false;
+}
+
+export const PreOrderForm: React.FC<PreOrderFormProps> = ({ id }) => {
+  const [isApplicationVisible, setApplicationVisible] = useState(false);
 
   const {
     register,
@@ -24,30 +35,64 @@ export const PreOrderForm: React.FC = () => {
     handleSubmit,
     reset,
     watch,
+    getValues,
   } = useForm<FormData>({
     mode: "onBlur",
     defaultValues: {
-      agreement: true,
-      tariff: "Годовая (1499 ₽/год) — лучшее соотношение цены и качества!",
+      consent: true,
+      preferred_plan: "MONTHLY",
+      gender: "FEMALE",
     },
   });
 
   const nameValue = watch("name");
   const emailValue = watch("email");
+  const telValue = watch("phone");
 
   const isFilled = (value: string | undefined) => {
     return value && value.trim() !== "";
   };
-const onSubmit = (data: FormData) => {
-  console.log(data);
-  setFormData(data); // сохраняем в контекст
-  reset();
-};
 
-  
+  const onSubmit = async (data: FormData) => {
+    const SubscriptionRequestCreate = getValues();
+    console.log(SubscriptionRequestCreate);
+
+    try {
+      const response = await axios.post(
+        "https://test.easywordsapp.com/api/subscriptions/",
+        SubscriptionRequestCreate,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      console.log("Response:", response.data);
+      setApplicationVisible(true);
+      reset();
+    } catch (error) {
+      console.error("Error submitting form:", error);
+    }
+  };
+
+  const closeApplication = () => {
+    setApplicationVisible(false);
+  };
+
+  useEffect(() => {
+    if (isApplicationVisible) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [isApplicationVisible]);
 
   return (
-    <div className={styles.PreOrderOfferFormWrapper}>
+    <div className={styles.PreOrderOfferFormWrapper} id={id}>
       <h3>Предварительный заказ EasyWords</h3>
       <form className={styles.Form} onSubmit={handleSubmit(onSubmit)}>
         <div
@@ -76,7 +121,8 @@ const onSubmit = (data: FormData) => {
           />
           <div className={styles.TextError}>
             {errors?.name && (
-              <span>
+              <span className={styles.ErrorBox}>
+                <img src={IconError} alt="Ошибка" />
                 {errors?.name?.message || "Это поле обязательно для заполнения"}
               </span>
             )}
@@ -101,21 +147,62 @@ const onSubmit = (data: FormData) => {
           />
           <div className={styles.TextError}>
             {errors?.email && (
-              <span>
-                {errors?.email?.message ||
-                  "Это поле обязательно для заполнения"}
+              <span className={styles.ErrorBox}>
+                <img src={IconError} alt="Ошибка" />
+                {errors?.email.message || "Это поле обязательно для заполнения"}
               </span>
             )}
           </div>
         </div>
-
         <div className={styles.FormBox}>
+          <h4>Ваш пол</h4>
+          <div className={styles.CustomRadioButtonsWrapper}>
+            <label className={styles.CustomRadioButtonTariff}>
+              <input
+                type="radio"
+                value="MALE"
+                {...register("gender", { required: true })}
+                className={styles.RadioButtonInput}
+              />
+              <span className={styles.RadioButtonLabel}>Мужской</span>
+            </label>
+            <label className={styles.CustomRadioButtonTariff}>
+              <input
+                type="radio"
+                value="FEMALE"
+                {...register("gender", { required: true })}
+                className={styles.RadioButtonInput}
+              />
+              <span className={styles.RadioButtonLabel}>Женский</span>
+            </label>
+          </div>
+        </div>
+
+        <div
+          className={classNames(styles.FormBox, {
+            [styles.InputFilled]: isFilled(telValue),
+          })}
+        >
           <input
             className={styles.FormInput}
-            {...register("tel")}
+            {...register("phone", {
+              required: "Поле обязательно к заполнению",
+              pattern: {
+                value: /^\+\d{7,15}$/,
+                message:
+                  "Введите корректный номер телефона (только цифры, начиная со знака +)",
+              },
+            })}
             placeholder="Номер телефона"
           />
-          {errors.tel && <span>Это поле обязательно для заполнения</span>}
+          <div className={styles.TextError}>
+            {errors.phone && (
+              <span className={styles.ErrorBox}>
+                <img src={IconError} alt="Ошибка" />
+                {errors.phone.message}
+              </span>
+            )}
+          </div>
         </div>
 
         <div className={styles.FormBox}>
@@ -124,8 +211,8 @@ const onSubmit = (data: FormData) => {
             <label className={styles.CustomRadioButtonTariff}>
               <input
                 type="radio"
-                value="Ежемесячно (149 ₽/месяц)"
-                {...register("tariff", { required: true })}
+                value="MONTHLY"
+                {...register("preferred_plan", { required: true })}
                 className={styles.RadioButtonInput}
               />
               <span className={styles.RadioButtonLabel}>
@@ -135,8 +222,8 @@ const onSubmit = (data: FormData) => {
             <label className={styles.CustomRadioButtonTariff}>
               <input
                 type="radio"
-                value="Годовая (1499 ₽/год) — лучшее соотношение цены и качества!"
-                {...register("tariff", { required: true })}
+                value="YEARLY"
+                {...register("preferred_plan", { required: true })}
                 className={styles.RadioButtonInput}
               />
               <span className={styles.RadioButtonLabel}>
@@ -145,7 +232,7 @@ const onSubmit = (data: FormData) => {
             </label>
           </div>
           <div className={styles.TextError}>
-            {errors.tariff && <span>Выберите тариф</span>}
+            {errors.preferred_plan && <span>Выберите тариф</span>}
           </div>
         </div>
 
@@ -154,28 +241,38 @@ const onSubmit = (data: FormData) => {
             <p>Устройство</p>
             <div className={styles.SelectWrapper}>
               <select
-                {...register("option", { required: true })}
+                {...register("system_version", { required: true })}
                 className={styles.CustomSelect}
               >
                 <option value="" hidden>
                   Выберите устройство
                 </option>
-                <option value="IOS">IOS</option>
-                <option value="Android">Android</option>
+                <option value="ios">IOS</option>
+                <option value="android">Android</option>
               </select>
               <span className={styles.IconSelect}></span>
             </div>
           </label>
           <div className={styles.TextError}>
-            {errors.option && <span>Выберите устройство</span>}
+            {errors.system_version && (
+              <span className={styles.ErrorBox}>
+                <img src={IconError} alt="Ошибка" />
+                {errors?.system_version?.message ||
+                  "Это поле обязательно для заполнения"}
+              </span>
+            )}
           </div>
         </div>
 
         <div>
           <label>
             <p>Какие функции вас больше всего интересуют?</p>
-            <textarea {...register("textarea1")} className={styles.Textarea} />
-            {errors.textarea1 && (
+            <textarea
+              {...register("additional_features")}
+              className={styles.Textarea}
+              placeholder="Например: флеш-карточки, мнемотехники"
+            />
+            {errors.additional_features && (
               <span>Это поле обязательно для заполнения</span>
             )}
           </label>
@@ -184,8 +281,10 @@ const onSubmit = (data: FormData) => {
         <div>
           <label>
             <p>Оставьте комментарий</p>
-            <textarea {...register("textarea2")} className={styles.Textarea} />
-            {errors.textarea2 && (
+            <textarea {...register("comments")}
+            className={styles.Textarea}
+             placeholder="Если есть, что добавить" />
+            {errors.comments && (
               <span>Это поле обязательно для заполнения</span>
             )}
           </label>
@@ -195,21 +294,28 @@ const onSubmit = (data: FormData) => {
           <label className={styles.CustomCheckbox}>
             <input
               type="checkbox"
-              {...register("agreement", { required: true })}
+              {...register("consent", { required: true })}
               className={styles.CheckboxInput}
             />
             <span className={styles.CheckboxLabel}>
-              Я согласен(а) с условиями использования и политикой
-              конфиденциальности
+              Я согласен(а) с
+              <Link to="/UserAgreement"> условиями использования</Link>и
+              <Link to="/PrivacyPolicy"> политикой конфиденциальности</Link>
             </span>
           </label>
           <div className={styles.TextError}>
-            {errors.agreement && <span>Необходимо согласие с условиями</span>}
+            {errors.consent && <span>Необходимо согласие с условиями</span>}
           </div>
         </div>
 
-        <input className={styles.InputSubmit} type="submit" value="Отправить" />
+        <input className={styles.InputSubmit} type="submit" value="Оформить заказ" />
       </form>
+      {isApplicationVisible && (
+        <>
+          <div className={styles.overlay} />
+          <ApplicationAccept onBack={closeApplication} />
+        </>
+      )}
     </div>
   );
 };

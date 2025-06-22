@@ -6,4 +6,5 @@
   border: 2px var(--blue-500) solid;
   font-size: 24px;
   font-weight: 900;
+  letter-spacing: -1px;
 }

@@ -1,7 +1,15 @@
 .SectionFqa {
-    padding: 56px 0;
+  padding: 56px 0;
 }
 
 .SectionFqa h2 {
-    margin-bottom: 56px;
+  margin-bottom: 56px;
 }
+@media (max-width: 575px){
+   .SectionFqa {
+    padding: 8px 0;
+}
+.SectionFqa h2 {
+  text-align: left;
+  margin-bottom: 20px;
+}}

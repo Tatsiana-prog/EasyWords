@@ -8,7 +8,7 @@ interface PreOrderOfferProps {
   id?: string;
 }
 
-export const PreOrderOffer: React.FC<PreOrderOfferProps> = ( ) => {
+export const PreOrderOffer: React.FC<PreOrderOfferProps> = () => {
   return (
     <section className={styles.SectionPreOrderOffer}>
       <div className={styles.PreOrderOfferHeader}>
@@ -47,7 +47,7 @@ export const PreOrderOffer: React.FC<PreOrderOfferProps> = ( ) => {
           </div>
         </div>
         <div className={styles.PreOrderOfferColumn}>
-          <PreOrderForm />
+          <PreOrderForm id="Preorderoffer" />
         </div>
       </div>
     </section>

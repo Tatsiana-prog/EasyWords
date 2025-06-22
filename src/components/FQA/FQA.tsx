@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { Accordion } from '../FQA/components/Accordion';
-import styles from './FQA.module.css';
+import React, { useEffect, useState } from "react";
+import { Accordion } from "../FQA/components/Accordion";
+import styles from "./FQA.module.css";
+import api from "../../api/api";
 
 interface FaqItem {
   question: string;
@@ -20,15 +21,18 @@ export const FQA: React.FC<FqaProps> = ({ id }) => {
 
   useEffect(() => {
     const fetchFaqItems = async () => {
+      setLoading(true);
+      setError(null); // Clear previous errors
+
       try {
-        const response = await fetch('https://test.easywordsapp.com/api/faqs/');
-        if (!response.ok) {
-          throw new Error('Ошибка загрузки данных');
+        const response = await api.get("/faqs");
+        if (!response || response.status !== 200) {
+          throw new Error("Ошибка загрузки данных");
         }
-        const data = await response.json();
+        const data = response.data; // Assuming axios is used, response.data contains the data
         setFaqItems(data);
       } catch (err) {
-        setError(err instanceof Error ? err.message : 'Ошибка');
+        setError(err instanceof Error ? err.message : "Ошибка");
       } finally {
         setLoading(false);
       }

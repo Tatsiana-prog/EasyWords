@@ -27,3 +27,12 @@
   background: url(../../../public/images/icons/icon-check-red.svg) no-repeat
     center;
 }
+
+@media (max-width: 575px) {
+  .ListItem {
+    font-size: 14px;
+  }
+  .List {
+    line-height: 1.8;
+  }
+}

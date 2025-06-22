@@ -4,7 +4,7 @@
     align-items: center;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1199px) {
    .Navigation {
         display: none;
     }
@@ -22,3 +22,5 @@
     transition: all 0.3s ease-in;
     opacity: 0.23;
 }
+
+
