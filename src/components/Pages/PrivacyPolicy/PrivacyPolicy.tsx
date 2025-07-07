@@ -1,13 +1,9 @@
 import styles from "../PrivacyPolicy/PrivacyPolicy.module.css";
-import { HeaderAdd } from "../../Header/HeaderAdd/HeaderAdd";
 
 export const PrivacyPolicy: React.FC = () => {
   return (
     <>
       <div className="Wrapper">
-        <HeaderAdd/>
-    </div>
-       <div className="Wrapper">
         <section className={styles.SectionPrivacyPolicy}>
           <h1>Политика обработки персональных данных EasyWords/EasyWordsApp</h1>
           <span className={styles.TextStrong}>1.Общие положения</span><span> Настоящая политика обработки персональных данных (далее — Политика) составлена в соответствии с требованиями Федерального закона от 27.07.2006 г. № 152-ФЗ «О персональных данных» (далее — Закон о персональных данных), Общего регламента по защите данных (GDPR) Европейского союза и иных применимых норм международного права. Она определяет порядок обработки персональных данных и меры по обеспечению безопасности персональных данных, предпринимаемые ИП Шениным Артемом Валерьевичем, ИНН 101301845704, ОГРНИП 316100100061158 (далее — Оператор).</span>

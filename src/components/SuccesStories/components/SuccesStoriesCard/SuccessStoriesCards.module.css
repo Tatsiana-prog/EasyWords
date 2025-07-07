@@ -1,0 +1,116 @@
+.SuccessStoriesCardsWrapper {
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+  width: 100%;
+  margin-bottom: 52px;
+}
+
+.SuccessStoriesCard {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  padding: 28px 40px;
+  background: var(--blue-100);
+  border-radius: 20px;
+  align-items: center;
+}
+.SuccessStoriesCard h5 {
+  text-align: left;
+}
+.SuccessStoriesCardText {
+  display: flex;
+  column-gap: 10px;
+}
+.SuccessStoriesCardContent {
+  display: flex;
+  column-gap: 20px;
+  align-items: center;
+  font-size: 18px;
+  font-weight: 500;
+}
+.SuccesStoriesCardImage {
+  height: 100%;
+}
+.SuccesStoriesCardDecs h5 {
+  margin-bottom: 12px;
+  text-align: left;
+}
+
+.SuccessStoriesYear {
+  position: relative;
+  padding-left: 22px;
+}
+
+.SuccessStoriesYear::before {
+  position: absolute;
+  content: "";
+  width: 8px;
+  height: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 6px;
+  border-radius: 50%;
+  background: var(--blue-500);
+}
+
+.SuccessStoriesCardBox {
+  padding: 10px 20px;
+  background: var(--olive-300);
+  border-radius: 12px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  display: inline-flex;
+  font-weight: 600;
+}
+.Avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+@media (max-width: 992px) {
+  .SuccessStoriesCardContent {
+    flex-direction: column;
+    text-align: center;
+  }
+  .Avatar {
+    margin-left: 0;
+    margin-right: auto;
+  }
+  .SuccessStoriesCardBox {
+    position: absolute;
+    top: 28px;
+    right: 40px;
+  }
+}
+@media (max-width: 768px) {
+  .SuccessStoriesCardContent {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 576px) {
+  .SuccessStoriesCardContent {
+    font-size: 14px;
+  }
+  .SuccessStoriesCardText {
+    display: flex;
+    flex-direction: column;
+  }
+  .SuccessStoriesYear {
+    padding-left: 0;
+    text-align: left;
+  }
+  .SuccessStoriesYear::before {
+    display: none;
+  }
+}
+@media (max-width: 380px) {
+  .SuccessStoriesCardBox {
+    top: 12px;
+    right: 12px;
+  }
+}

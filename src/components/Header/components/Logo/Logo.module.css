@@ -1,0 +1,6 @@
+@media (max-width: 768px) {
+    .Logo img {
+        width: 128px;
+        height: 42px;
+    }
+}

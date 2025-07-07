@@ -20,7 +20,7 @@ export const AppFeatures = () => (
       </div>
       <div className={styles.AppFeaturesImage}>
         <img
-          src="../../../public/images/image-feature-1.webp"
+          src="/images/image-feature-1.webp"
           alt="image"
         ></img>
       </div>
@@ -36,7 +36,7 @@ export const AppFeatures = () => (
       </div>
     <div className={styles.AppFeaturesImage}>
         <img
-          src="../../../public/images/image-feature-2.webp"
+          src="/images/image-feature-2.webp"
           alt="image"
         ></img>
       </div>
@@ -52,7 +52,7 @@ export const AppFeatures = () => (
       </div>
      <div className={styles.AppFeaturesImage}>
         <img
-          src="../../../public/images/image-feature-3.webp"
+          src="/images/image-feature-3.png"
           alt="image"
         ></img>
       </div>

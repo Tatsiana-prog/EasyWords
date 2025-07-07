@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import styles from "../Modal/Modal.module.css";
 import { Link } from "react-router-dom";
 import { ButtonLink } from "../../../ButtonLink/ButtonLink";
-import  LogoImage  from "../../../../../public/images/logo.svg";
+import LogoImage from "../../../../../public/images/logo.png";
 
 interface ModalProps {
   isOpen: boolean;
@@ -57,14 +57,15 @@ export const Modal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
     >
       <div className={styles.ModalBody} onClick={(e) => e.stopPropagation()}>
         <div className={styles.ModalRow}>
-          <img src={LogoImage}  className={styles.LogoImage} alt="logo"/>
+          <img src={LogoImage} className={styles.LogoImage} alt="logo" />
           <div className={styles.CloseButtonWrapper}>
             <button
               className={styles.CloseButton}
               onClick={onClose}
               aria-label="Закрыть меню"
-              >✖
-          </button>
+            >
+              ✖
+            </button>
           </div>
         </div>
         <div className={styles.ModalContent}>
@@ -92,14 +93,16 @@ export const Modal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
           >
             Контакты
           </button>
-          <Link to="/SignIn" className={styles.ModalLink}>
+          <Link to="/sign-in" className={styles.ModalLink}>
             Личный кабинет
           </Link>
-          <ButtonLink
-            to="/#Preorderoffer"
-            variant="white"
-            text="Предзаказ сейчас"
-          />
+          <div className={styles.ButtonModal}>
+            <ButtonLink
+              to="/#Preorderoffer"
+              variant="white"
+              text="Предзаказ сейчас"
+            />
+          </div>
         </div>
       </div>
     </div>

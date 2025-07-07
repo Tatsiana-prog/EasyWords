@@ -43,7 +43,10 @@
   .HeaderRow {
     max-width: 1139px;
   }
- }
+  .ButtonHeader {
+    display: none;
+  }
+}
 
 @media (max-width: 992px) {
   .Header {
@@ -53,16 +56,12 @@
   .HeaderRow {
     max-width: 932px;
   }
-  .HeaderBox a {
-    display: none;
-
-  }
 }
 
 @media (max-width: 768px) {
   .Header {
     max-width: 768px;
-    padding: 36px 30px;
+    padding: 44px 20px 18px;
   }
   .HeaderRow {
     max-width: 708px;
@@ -71,7 +70,6 @@
 
 @media (max-width: 575px) {
   .Header {
-    padding: 36px 20px;
     max-width: 575px;
   }
   .HeaderRow {
@@ -81,7 +79,6 @@
 
 @media (max-width: 380px) {
   .Header {
-    padding: 44px 20px 18px;
     max-width: 375px;
   }
   .HeaderRow {

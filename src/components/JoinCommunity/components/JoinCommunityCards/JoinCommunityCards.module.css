@@ -1,23 +1,65 @@
 .JoinCommunityCards {
-    display: flex;
-    justify-content: center;
-    column-gap: 74px;
+  margin-top: 56px;
+  display: flex;
+  justify-content: center;
+  column-gap: 74px;
 }
 .JoinCommunityCards h4 {
-    margin: 0 auto;
-    width: 80%;
-    text-align: center;
+  margin: 0 auto;
+  width: 80%;
+  text-align: center;
 }
 
 .JoinCommunityCard {
-    width: 318px;
-    padding:28px  32px;
-    border-radius: 20px;
-    outline: 2px #C2C2C2 solid;
-    outline-offset: -2px;
+  width: 318px;
+  padding: 28px 32px;
+  border-radius: 20px;
+  outline: 2px #c2c2c2 solid;
+  outline-offset: -2px;
 }
 .JoinCommunityCard span {
-    font-size: 44px;
-    font-weight: 800;
-    color:var(--blue-500);
+  font-size: 44px;
+  font-weight: 800;
+  color: var(--blue-500);
+}
+
+@media (max-width: 992px) {
+  .JoinCommunityCards {
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .JoinCommunityCard:first-child {
+    width: 100%;
+    padding: 20px 16px;
+    margin: 0 auto;
+  }
+  .JoinCommunityCard:nth-child(2) {
+    width: 47%;
+    padding: 20px 16px;
+  }
+  .JoinCommunityCard:nth-child(3) {
+    width: 47%;
+    padding: 20px 16px;
+  }
+}
+
+@media (max-width: 575px) {
+  .JoinCommunityCards {
+    margin-top: 24px;
+  }
+  .JoinCommunityCardText {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 380px) {
+  .JoinCommunityCards {
+    flex-direction: column;
+  }
+  .JoinCommunityCard:nth-child(2) {
+    width: 100%;
+  }
+  .JoinCommunityCard:nth-child(3) {
+    width: 100%;
+  }
 }

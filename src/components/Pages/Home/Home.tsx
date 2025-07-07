@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
-import { HeaderMain } from "../../Header/HeaderMain";
+import { Header } from "../../Header/Header";
 import { AppDescription } from "../../AppDescription/AppDescription";
 import { UniqueMethodology } from "../../UniqueMethodology/UniqueMethodology";
 import { AppFeatures } from "../../AppFeatures/AppFeatures";
@@ -30,7 +30,7 @@ export const Home: React.FC = () => {
   return (
     <>
       <div className="Wrapper">
-        <HeaderMain />
+        <Header />
         <AppDescription />
         <UniqueMethodology id="UniqueMethodology" />
       </div>

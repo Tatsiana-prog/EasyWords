@@ -7,12 +7,23 @@
   padding: 20px 32px;
   border-radius: 20px;
   border: 2px solid var(--blue-500);
+  margin-top: 10px;
 }
 .FooterFormBox {
     display: flex;
     column-gap: 20px;
 }
 
+.TextError {
+  font-size: 14px;
+  color: var(--red-700);
+}
+.ErrorBox {
+  margin-top: 9px;
+  display: flex;
+  column-gap: 9px;
+  align-items: center;
+}
 .FooterInputSubmit {
     width: 203px;
     height: 62px;

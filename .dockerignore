@@ -1,0 +1,11 @@
+# Файл .dockerignore
+venv
+A_venv
+B_venv
+F_venv
+M_venv
+.env
+.git
+db.sqlite3
+__pycache__/
+*.pyc

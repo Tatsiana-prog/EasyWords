@@ -27,6 +27,10 @@ interface UserFormProps {
 export const UserForm: React.FC<UserFormProps> = ({ setSystemVersion }) => {
   const [isApplicationVisible, setApplicationVisible] = useState(false);
   const [id, setSubscriptionId] = useState<number | null>(null);
+  const [imageSrc, setImageSrc] = useState<string | null>(null);
+  const [isUploading, setIsUploading] = useState(false);
+  // ✅ ШАГ 1: Добавляем состояние для нашего уведомления
+  const [notification, setNotification] = useState<string | null>(null);
 
   const {
     register,
@@ -43,27 +47,28 @@ export const UserForm: React.FC<UserFormProps> = ({ setSystemVersion }) => {
     },
   });
 
+  const isFilled = (value: string | undefined) => value && value.trim() !== "";
   const nameValue = watch("name");
   const emailValue = watch("email");
   const telValue = watch("phone");
   const systemVersion = watch("system_version");
 
-  // Update the system version in the parent component
   useEffect(() => {
     if (systemVersion) {
       setSystemVersion(systemVersion);
     }
   }, [systemVersion, setSystemVersion]);
 
-  const isFilled = (value: string | undefined) => value && value.trim() !== "";
-
   const fetchUserData = async () => {
     try {
       const userResponse = await api.get("/users/me");
       const user_Id = userResponse.data.id;
 
-      const subscriptionResponse = await api.get(`/subscriptions/by-user/${user_Id}`);
-      const subscriptionData: Partial<FormData> & { id: number } = subscriptionResponse.data;
+      const subscriptionResponse = await api.get(
+        `/subscriptions/by-user/${user_Id}`
+      );
+      const subscriptionData: Partial<FormData> & { id: number } =
+        subscriptionResponse.data;
 
       setSubscriptionId(subscriptionData.id);
 
@@ -86,6 +91,15 @@ export const UserForm: React.FC<UserFormProps> = ({ setSystemVersion }) => {
           setValue(key, subscriptionData[key]!);
         }
       });
+
+      if (subscriptionData.id) {
+        const imageResponse = await api.get(
+          `/subscriptions/${subscriptionData.id}/avatar`
+        );
+        if (imageResponse.data?.imageUrl) {
+          setImageSrc(imageResponse.data.imageUrl);
+        }
+      }
     } catch (error) {
       console.error("Ошибка при получении данных:", error);
     }
@@ -96,6 +110,7 @@ export const UserForm: React.FC<UserFormProps> = ({ setSystemVersion }) => {
   }, []);
 
   const onSubmit = async (data: FormData) => {
+    setNotification(null); // ✅ Сбрасываем уведомление при попытке сохранения
     try {
       if (!id) {
         throw new Error("ID подписки не найден. Заявка, возможно, не создана.");
@@ -115,11 +130,110 @@ export const UserForm: React.FC<UserFormProps> = ({ setSystemVersion }) => {
     }
   };
 
+  // const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   if (!id || !e.target.files || e.target.files.length === 0) return;
+
+  //   const file = e.target.files[0];
+  //   const formData = new FormData();
+  //   formData.append("avatar", file);
+
+  //   try {
+  //     setIsUploading(true);
+  //     const response = await api.post(`/subscriptions/${id}/avatar`, formData, {
+  //       headers: {
+  //         "Content-Type": "multipart/form-data",
+  //       },
+  //     });
+
+  //     if (response.data?.imageUrl) {
+  //       setImageSrc(response.data.imageUrl);
+  //     }
+  //   } catch (error) {
+  //     console.error("Ошибка при загрузке изображения:", error);
+  //     alert("Не удалось загрузить изображение. Попробуйте снова.");
+  //   } finally {
+  //     setIsUploading(false);
+  //   }
+  // };
+
+  const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!id || !e.target.files || e.target.files.length === 0) return;
+
+    const file = e.target.files[0];
+    const formData = new FormData();
+    formData.append("avatar", file);
+
+    try {
+      setIsUploading(true);
+      setNotification(null); // Сбрасываем предыдущее уведомление, если оно было
+      
+      const uploadUrl = `/subscriptions/${id}/avatar`;
+      const response = await api.post(uploadUrl, formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
+
+      if (response.status === 200) {
+        const newImageUrl = `https://test.easywordsapp.com/api/subscriptions/${id}/avatar?timestamp=${new Date().getTime()}`;
+        setImageSrc(newImageUrl);
+        
+        // ✅ ШАГ 2: Устанавливаем текст уведомления
+        setNotification("Не забудьте нажать кнопку ниже в форме - 'Изменить'!");
+        
+        // Опционально: скрываем уведомление через 7 секунд
+        setTimeout(() => {
+          setNotification(null);
+        }, 7000);
+
+      } else {
+        alert("Не удалось обновить фото, сервер вернул неожиданный ответ.");
+      }
+      
+    } catch (error) {
+      console.error("Ошибка при загрузке изображения:", error);
+      alert("Не удалось загрузить изображение. Попробуйте снова.");
+    } finally {
+      setIsUploading(false);
+    }
+  };
+
   return (
     <div className={styles.PreOrderOfferFormWrapper}>
-      <h3>Ваши данные</h3>
+     
+      <div className={styles.UseFormHeader}>
+        {id && (
+          <div className={styles.AvatarSection}>
+            <img
+              className={styles.Avatar}
+              src={
+                imageSrc ||
+                `https://test.easywordsapp.com/api/subscriptions/${id}/avatar`
+              }
+              alt={`User ${id} avatar`}
+            />
+            <label className={styles.ChangePhotoButton}>
+              <input
+                type="file"
+                accept="image/*"
+                onChange={handleImageChange}
+                hidden
+              />
+              {isUploading ? "Загрузка..." : "Загрузить фото"}
+            </label>
+            {notification && (
+              <div className={styles.SuccessNotification}>
+                {notification}
+              </div>
+            )}
+          </div>
+        )}
+        <h3>Ваши данные</h3>
+      </div>
       <form className={styles.Form} onSubmit={handleSubmit(onSubmit)}>
-        <div className={classNames(styles.FormBox, { [styles.InputFilled]: isFilled(nameValue) })}>
+        <div
+          className={classNames(styles.FormBox, {
+            [styles.InputFilled]: isFilled(nameValue),
+          })}
+        >
           <input
             className={styles.FormInput}
             placeholder="Имя"
@@ -141,7 +255,11 @@ export const UserForm: React.FC<UserFormProps> = ({ setSystemVersion }) => {
           )}
         </div>
 
-        <div className={classNames(styles.FormBox, { [styles.InputFilled]: isFilled(emailValue) })}>
+        <div
+          className={classNames(styles.FormBox, {
+            [styles.InputFilled]: isFilled(emailValue),
+          })}
+        >
           <input
             className={styles.FormInput}
             placeholder="E-mail"
@@ -161,7 +279,11 @@ export const UserForm: React.FC<UserFormProps> = ({ setSystemVersion }) => {
           )}
         </div>
 
-        <div className={classNames(styles.FormBox, { [styles.InputFilled]: isFilled(telValue) })}>
+        <div
+          className={classNames(styles.FormBox, {
+            [styles.InputFilled]: isFilled(telValue),
+          })}
+        >
           <input
             className={styles.FormInput}
             placeholder="Номер телефона"
@@ -208,7 +330,9 @@ export const UserForm: React.FC<UserFormProps> = ({ setSystemVersion }) => {
             <p>Устройство</p>
             <div className={styles.SelectWrapper}>
               <select
-                {...register("system_version", { required: true })}
+                {...register("system_version", {
+                  required: "Это поле обязательно",
+                })}
                 className={styles.CustomSelect}
               >
                 <option value="" hidden>
@@ -223,7 +347,7 @@ export const UserForm: React.FC<UserFormProps> = ({ setSystemVersion }) => {
           {errors.system_version && (
             <span className={styles.ErrorBox}>
               <img src={IconError} alt="Ошибка" />
-              {errors.system_version.message || "Это поле обязательно"}
+              {errors.system_version.message}
             </span>
           )}
         </div>

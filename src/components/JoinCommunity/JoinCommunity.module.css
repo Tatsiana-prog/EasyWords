@@ -1,11 +1,35 @@
 .SectionJoinCommunity {
-  padding: 32px 0;
+  padding: 180px 0 32px 0;
 }
 
+.SectionJoinCommunity h2{
+  margin-bottom: 16px;
+  text-align: center;
+}
 .SectionJoinCommunity p {
   text-align: center;
-  margin-top: 32px;
-  margin-bottom: 56px;
+  margin-top: 16px;
+  margin-bottom: 0;
   font-size: 24px;
   font-weight: 700;
+}
+.SectionJoinCommunity span {
+  text-align: center;
+  font-weight: 700;
+  line-height: 1;
+}
+@media (max-width: 575px) { 
+  .SectionJoinCommunity {
+    padding-top: 140px;
+  }
+.SectionJoinCommunity p {
+    font-size: 14px;
+    margin-top: 16px;   
+    width: 50%;
+    margin-right: auto;
+    margin-left: auto;
+  }
+  .SectionJoinCommunity h5 {
+    text-align: center;
+  }
 }

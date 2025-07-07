@@ -1,5 +1,3 @@
-
-
 .FormGroup {
   margin-bottom: 15px;
 }
@@ -31,11 +29,6 @@ input {
   cursor: pointer;
 }
 
-.ForgotPassword {
-  display: block;
-  margin-top: 10px;
-  text-align: center;
-}
 
 .PasswordToggle {
   position: absolute;
@@ -48,3 +41,7 @@ input {
     width: 60%;
   }
 }
+@media (max-width: 381px) {
+.PasswordToggle {
+  top: 15px;
+}}

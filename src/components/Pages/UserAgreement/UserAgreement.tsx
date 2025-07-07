@@ -1,13 +1,9 @@
 import styles from "../PrivacyPolicy/PrivacyPolicy.module.css";
-import { HeaderAdd } from "../../Header/HeaderAdd/HeaderAdd";
 
 export const UserAgreement: React.FC = () => {
   return (
     <>
-      <div className="Wrapper">
-        <HeaderAdd />
-        </div>
-       <div className="Wrapper">
+     <div className="Wrapper">
         <section className={styles.SectionPrivacyPolicy}>
             <h1>Пользовательское соглашение EasyWords/EasyWordsApp (для предзаказа мобильного приложения)</h1>
                 <span className={styles.TextStrong}>Пожалуйста, внимательно ознакомьтесь с нашим Пользовательским соглашением перед оформлением предзаказа и использованием мобильного приложения EasyWords/EasyWordsApp. Ниже приведены условия, ограничения и ответственность, которые применяются к вам как пользователю при использовании наших сервисов.

@@ -10,7 +10,7 @@ interface PreOrderOfferProps {
 
 export const PreOrderOffer: React.FC<PreOrderOfferProps> = () => {
   return (
-    <section className={styles.SectionPreOrderOffer}>
+    <section className={styles.SectionPreOrderOffer} id="Preorderoffer">
       <div className={styles.PreOrderOfferHeader}>
         <h2>
           Оформите предварительный заказ сегодня и получите эксклюзивные
@@ -37,17 +37,17 @@ export const PreOrderOffer: React.FC<PreOrderOfferProps> = () => {
               </div>
               <div className={styles.PreOrderScheduleBox}>
                 <h5>Бета-доступ</h5>
-                <p>Июль 2025</p>
+                <p>Сентябрь 2025</p>
               </div>
               <div className={styles.PreOrderScheduleBox}>
                 <h5>Официальный запуск</h5>
-                <p>Август 2025</p>
+                <p>Октябрь 2025</p>
               </div>
             </div>
           </div>
         </div>
         <div className={styles.PreOrderOfferColumn}>
-          <PreOrderForm id="Preorderoffer" />
+          <PreOrderForm  />
         </div>
       </div>
     </section>

@@ -1,5 +1,5 @@
 import styles from "../UserProfile/UserProfile.module.css";
-import { HeaderMain } from "../../Header/HeaderMain/HeaderMain";
+import { Header } from "../../Header/Header";
 import { Footer } from "../../Footer/Footer";
 import { Text } from "../../Text/Text";
 import { UserProfilePromoCode } from "../UserProfile/components/UsePlofilePromoCode/UseProfilePromoCode";
@@ -14,7 +14,7 @@ export const UserProfile: React.FC = () => {
   return (
     <>
       <div className="Wrapper">
-        <HeaderMain />
+        <Header />
         <section className={styles.SectionUseProfile}>
           <div className="UseProfile">
             <h1>Личный кабинет</h1>

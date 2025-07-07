@@ -62,7 +62,7 @@ export const UniqueMethodology: React.FC<UniqueMethodologyProps> = ({ id }) => {
               Слова с одинаковым значением собраны в группы для легкого усвоения
             </Text>
             <img
-              src="../../../public/images/image-unique-2.webp"
+              src="/images/image-unique-2.webp"
               alt="image"
             ></img>
           </div>
@@ -80,7 +80,7 @@ export const UniqueMethodology: React.FC<UniqueMethodologyProps> = ({ id }) => {
           <UniqueMethodologyList />
         </div>
         <div className={styles.UniqueMethodologyCodding}>
-          <img src="../../../public/images/image-unique.webp" alt="image"></img>
+          <img src="/images/image-unique.webp" alt="image"></img>
           <h4>Логическое кодирование</h4>
           <Text>Наш мозг лучше обучается c помощью логических связей</Text>
         </div>

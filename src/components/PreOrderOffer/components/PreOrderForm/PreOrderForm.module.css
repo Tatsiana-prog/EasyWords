@@ -28,8 +28,7 @@
 .PasswordToggle {
   position: absolute;
   right: 20px;
-  top: 50%;
-  transform: translateY(-50%);
+  top: 20px;
 }
 
 .FormBox::before {
@@ -117,13 +116,9 @@ input:focus {
   margin-bottom: 12px;
 }
 
-.FormBox:nth-child(3) {
-}
 .FormBox:nth-child(3) input {
   text-align: left;
   margin-bottom: 0;
-}
-.FormBox:nth-child(4) input {
 }
 
 .label:nth-of-type(3) {
@@ -291,7 +286,7 @@ textarea::placeholder {
 }
 
 /*checkboxpolicy*/
-.CustomCcheckbox {
+.CustomCheckbox {
   display: flex;
   align-items: center;
   cursor: pointer;
@@ -347,6 +342,14 @@ textarea::placeholder {
   cursor: pointer;
 }
 
+.InputSubmit:hover {
+  background: var(--blue-600);
+}
+
+.InputSubmit:active {
+  background: var(--blue-700);
+}
+
 .TextError {
   font-size: 14px;
   color: var(--red-700);
@@ -367,21 +370,23 @@ textarea::placeholder {
   background: #d9d9d9;
   border: 2px #d9d9d9 solid;
 }
-
-.Avatar {
-  height: 59px;
+.AvatarSection { 
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 7px;
+}
+.Avatar {
+  display: block;
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+  margin: 0 auto;
+  margin-bottom: 12px;
 }
 
 .Avatar img {
-  width: 40px;
-  height: 40px;
-  margin: 0 auto;
   object-fit: cover;
-  border-radius: 50%;
+  margin: 0 auto;
 }
 
 .ImageChangeButton {
@@ -423,7 +428,8 @@ textarea::placeholder {
 }
 
 .SignInFormWrapper .FormBox::before,
-.ForgotPasswordFormWrapper .FormBox::before {
+.ForgotPasswordFormWrapper .FormBox::before,
+.ResetPasswordFormWrapper .FormBox::before {
   display: none;
 }
 
@@ -438,20 +444,25 @@ textarea::placeholder {
 
 .ForgotPassword {
   color: var(--blue-500);
+  transition: all 0.3s ease-in;
+}
+.ForgotPassword:hover {
+   color: var(--blue-800);
 }
 
-.ForgotPasswordFormWrapper {
+
+.ForgotPasswordFormWrapper, .ResetPasswordFormWrapper  {
   width: 480px;
   margin: 0 auto;
 }
 @media (max-width: 575px) {
-  .ForgotPasswordFormWrapper {
+  .ForgotPasswordFormWrapper, .ResetPasswordFormWrapper {
     width: 75%;
   }
 }
 
 @media (max-width: 1199px) {
-  .PreOrderOfferFormWrapper {
+  .PreOrderOfferFormWrapper, .ResetPasswordFormWrapper {
     max-width: 100%;
   }
 }
@@ -464,6 +475,7 @@ textarea::placeholder {
   .FormBox:nth-child(5)::before {
     left: 275px;
   }
+ 
 }
 
 @media (max-width: 575px) {
@@ -484,6 +496,9 @@ textarea::placeholder {
   }
   .FormBox:nth-child(4)::before {
     left: 140px;
+  }
+  .FormBox:nth-child(5)::before {
+    left: 246px;
   }
   .FormBox:nth-child(6)::before {
     left: 80px;
@@ -522,5 +537,66 @@ textarea::placeholder {
   .IconSelect {
     right: 22px;
   }
-  
+}
+.LinkDoc {
+  color:var(--blue-500);
+}
+.UseFormHeader {
+  position: relative;
+  display: flex;
+  column-gap: 15px;
+}
+.ChangePhotoButton {
+  width: 100px;
+  background-color: #f5f5f5;
+  color: #333;
+  border: 1px solid #ccc;
+  padding: 6px 12px;
+  font-size: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.FormInput::placeholder {
+  color: #999;
+}
+
+.FormInput:focus {
+  outline: none;
+  border-color:var(--blue-600); /* Цвет при фокусе, подберите ваш */
+  box-shadow: 0 0 0 3px rgba(100, 166, 236, 0.2);
+}
+
+.InputSubmit:disabled {
+  background-color: #9ca3af;
+  cursor: not-allowed;
+}
+
+.PasswordHints {
+  margin-top: 25px;
+  text-align: left;
+}
+
+.ApiError {
+  color: #dc3545;
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.SuccessNotification {
+  position: absolute;
+  top:60px;
+  left: 130px;
+  color: #155724; /* Темно-зеленый цвет текста */
+  background-color: #d4edda; /* Светло-зеленый фон */
+  border: 1px solid #c3e6cb; /* Зеленая рамка */
+  padding: 12px 15px;
+  border-radius: 8px;
+  text-align: center;
+  font-size: 12px;
 }

@@ -1,6 +1,5 @@
 .SectionDescription {
-  padding-top: 182px;
-  padding-bottom: 28px;
+  padding-top: 180px;
   display: flex;
   justify-content: space-around;
 }
@@ -88,6 +87,7 @@
   .Buttons {
     flex-direction: column;
     gap: 16px;
+    width: 100%;
   }
   .DescriptionListWrapper {
     max-width: 100%;
@@ -95,7 +95,7 @@
 }
 @media (max-width: 575px) {
   .SectionDescription {
-    padding-top: 144px;
+    padding-top: 100px;
     padding-bottom: 20px;
   }
   .DescriptionHeader {

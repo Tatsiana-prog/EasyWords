@@ -7,7 +7,6 @@ import IconError from "../../../../../public/images/icons/icon-error.png";
 import styles from "./PreOrderForm.module.css";
 import { Link } from "react-router-dom";
 
-
 interface PreOrderFormProps {
   id?: string;
 }
@@ -22,12 +21,11 @@ interface FormData {
   additional_features?: string;
   comments?: string;
   consent: boolean;
-  gifted_subscription_month: false;
-  gifted_subscription_year: false;
 }
 
 export const PreOrderForm: React.FC<PreOrderFormProps> = ({ id }) => {
   const [isApplicationVisible, setApplicationVisible] = useState(false);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const {
     register,
@@ -35,32 +33,21 @@ export const PreOrderForm: React.FC<PreOrderFormProps> = ({ id }) => {
     handleSubmit,
     reset,
     watch,
-    getValues,
   } = useForm<FormData>({
     mode: "onBlur",
     defaultValues: {
-      consent: true,
+      consent: false,
       preferred_plan: "MONTHLY",
       gender: "FEMALE",
     },
   });
 
-  const nameValue = watch("name");
-  const emailValue = watch("email");
-  const telValue = watch("phone");
-
-  const isFilled = (value: string | undefined) => {
-    return value && value.trim() !== "";
-  };
-
   const onSubmit = async (data: FormData) => {
-    const SubscriptionRequestCreate = getValues();
-    console.log(SubscriptionRequestCreate);
-
+    setLoading(true);
     try {
       const response = await axios.post(
         "https://test.easywordsapp.com/api/subscriptions/",
-        SubscriptionRequestCreate,
+        data,
         {
           headers: {
             "Content-Type": "application/json",
@@ -72,6 +59,8 @@ export const PreOrderForm: React.FC<PreOrderFormProps> = ({ id }) => {
       reset();
     } catch (error) {
       console.error("Error submitting form:", error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -80,12 +69,7 @@ export const PreOrderForm: React.FC<PreOrderFormProps> = ({ id }) => {
   };
 
   useEffect(() => {
-    if (isApplicationVisible) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "auto";
-    }
-
+    document.body.style.overflow = isApplicationVisible ? "hidden" : "auto";
     return () => {
       document.body.style.overflow = "auto";
     };
@@ -97,17 +81,14 @@ export const PreOrderForm: React.FC<PreOrderFormProps> = ({ id }) => {
       <form className={styles.Form} onSubmit={handleSubmit(onSubmit)}>
         <div
           className={classNames(styles.FormBox, {
-            [styles.InputFilled]: isFilled(nameValue),
+            [styles.InputFilled]: watch("name"),
           })}
         >
           <input
             className={styles.FormInput}
             {...register("name", {
               required: "Поле обязательно к заполнению",
-              minLength: {
-                value: 2,
-                message: "Минимум 2 символа",
-              },
+              minLength: { value: 2, message: "Минимум 2 символа" },
               maxLength: {
                 value: 50,
                 message: "Имя не должно превышать 50 символов",
@@ -119,25 +100,24 @@ export const PreOrderForm: React.FC<PreOrderFormProps> = ({ id }) => {
             })}
             placeholder="Имя"
           />
-          <div className={styles.TextError}>
-            {errors?.name && (
+          {errors.name && (
+            <div className={styles.TextError}>
               <span className={styles.ErrorBox}>
                 <img src={IconError} alt="Ошибка" />
-                {errors?.name?.message || "Это поле обязательно для заполнения"}
+                {errors.name.message}
               </span>
-            )}
-          </div>
+            </div>
+          )}
         </div>
-
         <div
           className={classNames(styles.FormBox, {
-            [styles.InputFilled]: isFilled(emailValue),
+            [styles.InputFilled]: watch("email"),
           })}
         >
           <input
             className={styles.FormInput}
             {...register("email", {
-              required: true,
+              required: "Поле обязательно к заполнению",
               pattern: {
                 value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
                 message: "Введите корректный email",
@@ -145,14 +125,14 @@ export const PreOrderForm: React.FC<PreOrderFormProps> = ({ id }) => {
             })}
             placeholder="E-mail"
           />
-          <div className={styles.TextError}>
-            {errors?.email && (
+          {errors.email && (
+            <div className={styles.TextError}>
               <span className={styles.ErrorBox}>
                 <img src={IconError} alt="Ошибка" />
-                {errors?.email.message || "Это поле обязательно для заполнения"}
+                {errors.email.message}
               </span>
-            )}
-          </div>
+            </div>
+          )}
         </div>
         <div className={styles.FormBox}>
           <h4>Ваш пол</h4>
@@ -176,11 +156,11 @@ export const PreOrderForm: React.FC<PreOrderFormProps> = ({ id }) => {
               <span className={styles.RadioButtonLabel}>Женский</span>
             </label>
           </div>
+          {errors.gender && <span>Выберите пол</span>}
         </div>
-
         <div
           className={classNames(styles.FormBox, {
-            [styles.InputFilled]: isFilled(telValue),
+            [styles.InputFilled]: watch("phone"),
           })}
         >
           <input
@@ -189,22 +169,20 @@ export const PreOrderForm: React.FC<PreOrderFormProps> = ({ id }) => {
               required: "Поле обязательно к заполнению",
               pattern: {
                 value: /^\+\d{7,15}$/,
-                message:
-                  "Введите корректный номер телефона (только цифры, начиная со знака +)",
+                message: "Введите корректный номер телефона",
               },
             })}
             placeholder="Номер телефона"
           />
-          <div className={styles.TextError}>
-            {errors.phone && (
+          {errors.phone && (
+            <div className={styles.TextError}>
               <span className={styles.ErrorBox}>
                 <img src={IconError} alt="Ошибка" />
                 {errors.phone.message}
               </span>
-            )}
-          </div>
+            </div>
+          )}
         </div>
-
         <div className={styles.FormBox}>
           <h4>Предпочтительная подписка</h4>
           <div className={styles.CustomRadioButtonsWrapper}>
@@ -227,43 +205,35 @@ export const PreOrderForm: React.FC<PreOrderFormProps> = ({ id }) => {
                 className={styles.RadioButtonInput}
               />
               <span className={styles.RadioButtonLabel}>
-                Годовая (1499 ₽/год) — лучшее соотношение цены и качества!
+                Годовая (1499 ₽/год)
               </span>
             </label>
           </div>
-          <div className={styles.TextError}>
-            {errors.preferred_plan && <span>Выберите тариф</span>}
-          </div>
+          {errors.preferred_plan && <span>Выберите тариф</span>}
         </div>
-
         <div className={styles.FormBox}>
           <label className={styles.SelectLabel}>
             <p>Устройство</p>
-            <div className={styles.SelectWrapper}>
-              <select
-                {...register("system_version", { required: true })}
-                className={styles.CustomSelect}
-              >
-                <option value="" hidden>
-                  Выберите устройство
-                </option>
-                <option value="ios">IOS</option>
-                <option value="android">Android</option>
-              </select>
-              <span className={styles.IconSelect}></span>
-            </div>
+            <select
+              {...register("system_version", { required: true })}
+              className={styles.CustomSelect}
+            >
+              <option value="" hidden>
+                Выберите устройство
+              </option>
+              <option value="ios">IOS</option>
+              <option value="android">Android</option>
+            </select>
           </label>
-          <div className={styles.TextError}>
-            {errors.system_version && (
+          {errors.system_version && (
+            <div className={styles.TextError}>
               <span className={styles.ErrorBox}>
                 <img src={IconError} alt="Ошибка" />
-                {errors?.system_version?.message ||
-                  "Это поле обязательно для заполнения"}
+                {errors.system_version.message}
               </span>
-            )}
-          </div>
+            </div>
+          )}
         </div>
-
         <div>
           <label>
             <p>Какие функции вас больше всего интересуют?</p>
@@ -272,44 +242,69 @@ export const PreOrderForm: React.FC<PreOrderFormProps> = ({ id }) => {
               className={styles.Textarea}
               placeholder="Например: флеш-карточки, мнемотехники"
             />
-            {errors.additional_features && (
-              <span>Это поле обязательно для заполнения</span>
-            )}
           </label>
         </div>
-
         <div>
           <label>
             <p>Оставьте комментарий</p>
-            <textarea {...register("comments")}
-            className={styles.Textarea}
-             placeholder="Если есть, что добавить" />
-            {errors.comments && (
-              <span>Это поле обязательно для заполнения</span>
-            )}
+            <textarea
+              {...register("comments")}
+              className={styles.Textarea}
+              placeholder="Если есть, что добавить"
+            />
           </label>
         </div>
-
         <div className={styles.checkboxWrapper}>
           <label className={styles.CustomCheckbox}>
             <input
               type="checkbox"
-              {...register("consent", { required: true })}
+              {...register("consent", {
+                required: "Необходимо согласие с условиями", // <-- ИЗМЕНЕНИЕ ЗДЕСЬ
+              })}
               className={styles.CheckboxInput}
             />
             <span className={styles.CheckboxLabel}>
-              Я согласен(а) с
-              <Link to="/UserAgreement"> условиями использования</Link>и
-              <Link to="/PrivacyPolicy"> политикой конфиденциальности</Link>
+              Я согласен(а) с{" "}
+              <Link
+                to="/user-agreement"
+                className={styles.LinkDoc}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                условиями использования
+              </Link>{" "}
+              и
+              <Link
+                to="/privacy-policy"
+                className={styles.LinkDoc}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {" "}
+                политикой конфиденциальности
+              </Link>
             </span>
           </label>
-          <div className={styles.TextError}>
-            {errors.consent && <span>Необходимо согласие с условиями</span>}
-          </div>
+          {/* Теперь можно использовать errors.consent.message для единообразия */}
+          {errors.consent && (
+            <div className={styles.TextError}> {/* Используем тот же стиль, что и для других ошибок */}
+              <span className={styles.ErrorBox}>
+                <img src={IconError} alt="Ошибка" />
+                {errors.consent.message}
+              </span>
+            </div>
+          )}
         </div>
 
-        <input className={styles.InputSubmit} type="submit" value="Оформить заказ" />
+        {/* Кнопка отправки */}
+        <input
+          className={styles.InputSubmit}
+          type="submit"
+          value={loading ? "Оформление заказа..." : "Оформить заказ"}
+        />
       </form>
+
+      {/* Модальное окно */}
       {isApplicationVisible && (
         <>
           <div className={styles.overlay} />

@@ -13,35 +13,40 @@ interface EmailFormData {
 
 export const ForgotPasswordForm: React.FC = () => {
   const [isApplicationVisible, setApplicationVisible] = useState(false);
+  const [loading, setLoading] = useState<boolean>(false);
+
   const {
     register,
     handleSubmit,
     formState: { errors },
     watch,
+    reset,
   } = useForm<EmailFormData>();
 
   const EmailValue = watch("Email");
-  const isFilled = (value: string | undefined) => {
-    return value && value.trim() !== "";
-  };
+  const isFilled = (value: string | undefined) => !!value?.trim();
 
   const onSubmit = async (data: EmailFormData) => {
+    setLoading(true);
     try {
-      const response = await api.post('/auth/forgot-password', {
-        email: data.Email,
+      const payload = { email: data.Email };
+
+      // Attempt to send in JSON format
+      const response = await api.post("/auth/forgot-password", payload, {
+        headers: { "Content-Type": "application/json" },
       });
 
-      console.log("Response:", response); // Логируем весь ответ
-
-      if (!response || response.status !== 200) {
-        throw new Error('Ошибка при отправке запроса');
-      }
-
-      // Показать окно об успешной отправке
+      console.log("Response:", response.data);
       setApplicationVisible(true);
-    } catch (error) {
-      console.error('Ошибка при восстановлении пароля:', error);
-      alert('Не удалось отправить письмо. Проверьте email и попробуйте снова.');
+      reset();
+    } catch (error: any) {
+      console.error("Error submitting form:", error);
+      alert(
+        error.response?.data?.message ||
+          "Не удалось отправить письмо. Проверьте email и попробуйте снова."
+      );
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -51,7 +56,6 @@ export const ForgotPasswordForm: React.FC = () => {
 
   useEffect(() => {
     document.body.style.overflow = isApplicationVisible ? "hidden" : "auto";
-
     return () => {
       document.body.style.overflow = "auto";
     };
@@ -59,8 +63,8 @@ export const ForgotPasswordForm: React.FC = () => {
 
   return (
     <div className={styles.ForgotPasswordFormWrapper}>
-      <h1>Воccтановить пароль</h1>
-      <Text>Укажите e-mail — мы вышлем вам инструкцию для сброса пароля</Text>
+      <h1>Восстановить пароль</h1>
+      <Text>Укажите e‑mail — мы вышлем вам инструкцию для сброса пароля</Text>
       <form className={styles.Form} onSubmit={handleSubmit(onSubmit)}>
         <div
           className={classNames(styles.FormBox, {
@@ -83,17 +87,19 @@ export const ForgotPasswordForm: React.FC = () => {
             {errors.Email && (
               <span className={styles.ErrorBox}>
                 <img src={IconError} alt="Error icon" />
-                {errors?.Email?.message || "Обязательно к заполнению"}
+                {errors.Email.message}
               </span>
             )}
           </div>
         </div>
+
         <input
           className={styles.InputSubmit}
           type="submit"
-          value="Восстановить пароль"
+          value={loading ? "Восстановление..." : "Восстановить пароль"}
         />
       </form>
+
       {isApplicationVisible && (
         <>
           <div className={styles.overlay} />

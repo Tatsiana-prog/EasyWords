@@ -1,5 +1,5 @@
 .SectionPrivacyPolicy {
-    padding: 200px 0 60px;
+    padding: 60px 0;
     text-align: left;
 }
 
@@ -28,7 +28,7 @@
 }
 @media (max-width: 768px) {
   .SectionPrivacyPolicy {
-   padding-top: 170px;
+   padding: 40px 0;
   }
 
  .SectionPrivacyPolicy h1 {

@@ -1,12 +1,12 @@
 import styles from "../SignIn/SingIn.module.css";
-import { HeaderAdd } from "../../Header/HeaderAdd/HeaderAdd";
+import { Header } from "../../Header/Header";
 import { ResetPasswordForm } from "./components/ResetPasswordForm/ResetPasswordForm";
 
 export const ResetPassword: React.FC = () => {
   return (
     <>
       <div className="Wrapper">
-        <HeaderAdd />
+        <Header />
       </div>
       <div className="Wrapper">
         <section className={styles.SectionSignIn}>

@@ -1,5 +1,5 @@
 .SectionSuccesStories {
-  padding: 39px 0 30px;
+  padding: 39px 0 0px;
 }
 
 .SuccesStoriesHeader {
@@ -7,4 +7,10 @@
   justify-content: center;
   gap: 12px;
   margin-bottom: 40px;
+}
+
+@media (max-width: 768px) {
+  .SuccesStoriesHeader img {
+    display: none;
+  }
 }

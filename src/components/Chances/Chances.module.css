@@ -23,6 +23,7 @@
 .BlueBg p,
 .WhiteBg p {
   margin-bottom: 28px;
+  width: 90%;
 }
 
 .BlueBg button,

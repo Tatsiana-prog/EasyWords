@@ -1,6 +1,5 @@
 .SectionUniqueMethodology {
-  padding-top: 28px;
-  padding-bottom: 64px;
+  padding: 180px 0 64px 0;
 }
 
 .UniqueMethodologyRow1 {
@@ -14,9 +13,10 @@
 
 .UniqueMethodologyRow2 {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  column-gap: 45px;
+  column-gap: 67px;
+  padding-left: 60px;
 }
 
 .UniqueMethodologyInfo {
@@ -29,6 +29,10 @@
 }
 .UniqueMethodologyInfo p:last-child {
   margin-bottom: 0;
+}
+
+.UniqueMethodologyDifference h4 {
+  text-align: left;
 }
 
 .UniqueMethodologyListWrapper {
@@ -81,16 +85,23 @@
   align-items: center;
   column-gap: 5px;
   row-gap: 40px;
-  margin-bottom: 110px;
+  margin: 0 0 110px auto;
 }
 
+
 .UniquelogicalConnections {
-  max-width: 100%;
+  width: 538px;
   padding: 28px 32px 32px 32px;
   border-radius: 20px;
   border: 1px #c2c2c2 solid;
 }
+.UniquelogicalConnections h4 {
+  margin-bottom: 20px;
+}
 
+.UniquelogicalConnections p {
+  text-align: center;
+}
 .UniqueMethodologyArrowCenter {
   position: absolute;
   top: 44%;
@@ -122,6 +133,8 @@
   margin-top: 16px;
   text-align: center;
   font-weight: 500;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 @media (max-width: 992px) {
@@ -141,14 +154,24 @@
 }
 
 @media (max-width: 768px) {
+  .UniqueMethodologyRow2 {
+    padding-left: 0;
+  }
+  .UniquelogicalConnections {
+    padding: 16px 20px;
+  }
   .UniqueMethodologyDifference {
     padding-left: 0px;
+  }
+  .UniqueMethodologyListItem::before {
+    width: 12px;
+    height: 12px;
   }
 }
 
 @media (max-width: 575px) {
   .SectionUniqueMethodology {
-    padding: 20px 0 40px;
+    padding: 140px 0 40px;
 }
   .UniqueMethodologyRow1 {
     margin: 20px 0 40px;
@@ -156,6 +179,9 @@
   .UniqueMethodologyListWrapper {
     margin-top: 24px;
     padding: 20px 18px;
+  }
+  .UniquelogicalConnections {
+    width: 100%;
   }
   .UniquelogicalConnections img {
     width: 100%;

@@ -1,0 +1,11 @@
+.ButtonHeader {
+    display: block;
+}
+@media (max-width: 1199px) {
+    .ButtonHeader {
+        display: none;
+    }
+    .white {
+        width: 30%;
+    }
+}

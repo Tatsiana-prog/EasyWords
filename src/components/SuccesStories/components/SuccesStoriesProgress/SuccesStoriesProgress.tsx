@@ -27,7 +27,8 @@ export const SuccesStoriesProgress = () => {
     fetchProgress();
   }, []);
 
-  const targetProgress = 200;
+  // const targetProgress = 200;
+  const targetProgress = Math.max(100, Math.ceil(currentProgress / 100) * 100);
   const progressPercentage = Math.round(
     (currentProgress / targetProgress) * 100
   );

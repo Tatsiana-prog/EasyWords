@@ -1,4 +1,5 @@
 .SectionAppFeatures {
+  margin-top: 180px;
   padding: 28px 0;
   background: var(--blue-100);
 }
@@ -12,8 +13,8 @@
   max-width: 1320px;
   column-gap: 219px;
   align-items: center;
-  margin: 0 auto;
-  margin-bottom: 60px;
+  margin: 0 60px 60px 60px;
+ 
 }
 
 @media (max-width: 1199px) {
@@ -31,6 +32,7 @@
   .AppFeaturesRow {
     flex-direction: column;
     row-gap: 25px;
+    margin: 0 auto;
   }
   .AppFeaturesImage {
     margin-left: 0;
@@ -66,7 +68,7 @@
 
 @media (max-width: 575px) {
   .SectionAppFeatures {
-    padding: 32px 0;
+    padding: 140px 20px 32px 20px;
   }
   .SectionAppFeatures h2 {
     margin-bottom: 20px;

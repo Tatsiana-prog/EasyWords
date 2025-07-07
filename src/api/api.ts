@@ -3,6 +3,7 @@ import axios from "axios";
 
 const api = axios.create({
   baseURL: "https://test.easywordsapp.com/api",
+  //baseURL: "/api", // <-- ИСПОЛЬЗУЙТЕ ОТНОСИТЕЛЬНЫЙ ПУТЬ
 });
 
 api.interceptors.request.use((config) => {

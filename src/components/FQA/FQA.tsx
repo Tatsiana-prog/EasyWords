@@ -29,7 +29,7 @@ export const FQA: React.FC<FqaProps> = ({ id }) => {
         if (!response || response.status !== 200) {
           throw new Error("Ошибка загрузки данных");
         }
-        const data = response.data; // Assuming axios is used, response.data contains the data
+        const data = response.data;
         setFaqItems(data);
       } catch (err) {
         setError(err instanceof Error ? err.message : "Ошибка");
