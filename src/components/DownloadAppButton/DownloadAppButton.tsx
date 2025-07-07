@@ -1,4 +1,4 @@
-import styles from "./DownloadAppButton.module.css"; // Путь лучше сделать относительным
+import styles from "./DownloadAppButton.module.css";
 import { Button } from "../Button/button";
 import IconDownload from "../../../public/images/icons/icon-download.svg";
 import { useState } from "react";
@@ -15,15 +15,11 @@ export const DownloadAppButton: React.FC<DownloadAppButtonProps> = ({ systemVers
     setTimeout(() => {
       setShowMessage(false);
     }, 3000);
-  };
-
-  // ✨ ИСПОЛЬЗУЕМ prop, чтобы определить текст для кнопки.
-  // Это решает ошибку компиляции.
+  };  
   const buttonText = systemVersion === "ios" ? "Скачать для iOS" : "Скачать для Android";
 
   return (
     <div>
-      {/* ✨ Используем переменную buttonText в пропсе `text` */}
       <Button variant="blue" text={buttonText} onClick={handleClick}>
         <img src={IconDownload} alt="icon" />
       </Button>

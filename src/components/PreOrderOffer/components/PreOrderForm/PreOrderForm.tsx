@@ -259,7 +259,7 @@ export const PreOrderForm: React.FC<PreOrderFormProps> = ({ id }) => {
             <input
               type="checkbox"
               {...register("consent", {
-                required: "Необходимо согласие с условиями", // <-- ИЗМЕНЕНИЕ ЗДЕСЬ
+                required: "Необходимо согласие с условиями",
               })}
               className={styles.CheckboxInput}
             />
@@ -285,9 +285,8 @@ export const PreOrderForm: React.FC<PreOrderFormProps> = ({ id }) => {
               </Link>
             </span>
           </label>
-          {/* Теперь можно использовать errors.consent.message для единообразия */}
           {errors.consent && (
-            <div className={styles.TextError}> {/* Используем тот же стиль, что и для других ошибок */}
+            <div className={styles.TextError}>
               <span className={styles.ErrorBox}>
                 <img src={IconError} alt="Ошибка" />
                 {errors.consent.message}
@@ -295,16 +294,12 @@ export const PreOrderForm: React.FC<PreOrderFormProps> = ({ id }) => {
             </div>
           )}
         </div>
-
-        {/* Кнопка отправки */}
         <input
           className={styles.InputSubmit}
           type="submit"
           value={loading ? "Оформление заказа..." : "Оформить заказ"}
         />
       </form>
-
-      {/* Модальное окно */}
       {isApplicationVisible && (
         <>
           <div className={styles.overlay} />

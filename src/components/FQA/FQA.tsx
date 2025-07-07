@@ -22,7 +22,7 @@ export const FQA: React.FC<FqaProps> = ({ id }) => {
   useEffect(() => {
     const fetchFaqItems = async () => {
       setLoading(true);
-      setError(null); // Clear previous errors
+      setError(null);
 
       try {
         const response = await api.get("/faqs");

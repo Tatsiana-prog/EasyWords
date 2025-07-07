@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import styles from "../Tariffs/Tariffs.module.css";
 import { Text } from "../Text/Text";
-// import { Button } from "../Button/button"; закомитил, вызывало ошибку при деплое. т.к. не используется.
 import { TariffsBoxList1 } from "../Tariffs/components/TariffsBoxList1/TariffsBoxList1";
 import { TariffsBoxList2 } from "../Tariffs/components/TariffsBoxList2/TariffsBoxList2";
 import {ButtonLink } from "../ButtonLink/ButtonLink";

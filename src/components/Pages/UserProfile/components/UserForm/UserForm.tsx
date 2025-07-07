@@ -29,7 +29,6 @@ export const UserForm: React.FC<UserFormProps> = ({ setSystemVersion }) => {
   const [id, setSubscriptionId] = useState<number | null>(null);
   const [imageSrc, setImageSrc] = useState<string | null>(null);
   const [isUploading, setIsUploading] = useState(false);
-  // ✅ ШАГ 1: Добавляем состояние для нашего уведомления
   const [notification, setNotification] = useState<string | null>(null);
 
   const {
@@ -110,7 +109,7 @@ export const UserForm: React.FC<UserFormProps> = ({ setSystemVersion }) => {
   }, []);
 
   const onSubmit = async (data: FormData) => {
-    setNotification(null); // ✅ Сбрасываем уведомление при попытке сохранения
+    setNotification(null);
     try {
       if (!id) {
         throw new Error("ID подписки не найден. Заявка, возможно, не создана.");
@@ -130,31 +129,7 @@ export const UserForm: React.FC<UserFormProps> = ({ setSystemVersion }) => {
     }
   };
 
-  // const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   if (!id || !e.target.files || e.target.files.length === 0) return;
-
-  //   const file = e.target.files[0];
-  //   const formData = new FormData();
-  //   formData.append("avatar", file);
-
-  //   try {
-  //     setIsUploading(true);
-  //     const response = await api.post(`/subscriptions/${id}/avatar`, formData, {
-  //       headers: {
-  //         "Content-Type": "multipart/form-data",
-  //       },
-  //     });
-
-  //     if (response.data?.imageUrl) {
-  //       setImageSrc(response.data.imageUrl);
-  //     }
-  //   } catch (error) {
-  //     console.error("Ошибка при загрузке изображения:", error);
-  //     alert("Не удалось загрузить изображение. Попробуйте снова.");
-  //   } finally {
-  //     setIsUploading(false);
-  //   }
-  // };
+  
 
   const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!id || !e.target.files || e.target.files.length === 0) return;
@@ -165,7 +140,7 @@ export const UserForm: React.FC<UserFormProps> = ({ setSystemVersion }) => {
 
     try {
       setIsUploading(true);
-      setNotification(null); // Сбрасываем предыдущее уведомление, если оно было
+      setNotification(null);
       
       const uploadUrl = `/subscriptions/${id}/avatar`;
       const response = await api.post(uploadUrl, formData, {
@@ -175,11 +150,7 @@ export const UserForm: React.FC<UserFormProps> = ({ setSystemVersion }) => {
       if (response.status === 200) {
         const newImageUrl = `https://test.easywordsapp.com/api/subscriptions/${id}/avatar?timestamp=${new Date().getTime()}`;
         setImageSrc(newImageUrl);
-        
-        // ✅ ШАГ 2: Устанавливаем текст уведомления
         setNotification("Не забудьте нажать кнопку ниже в форме - 'Изменить'!");
-        
-        // Опционально: скрываем уведомление через 7 секунд
         setTimeout(() => {
           setNotification(null);
         }, 7000);
@@ -198,7 +169,6 @@ export const UserForm: React.FC<UserFormProps> = ({ setSystemVersion }) => {
 
   return (
     <div className={styles.PreOrderOfferFormWrapper}>
-     
       <div className={styles.UseFormHeader}>
         {id && (
           <div className={styles.AvatarSection}>

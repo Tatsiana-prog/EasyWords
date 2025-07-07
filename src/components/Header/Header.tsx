@@ -1,4 +1,3 @@
-// HeaderMain.tsx
 import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Logo } from "./components/Logo/Logo";

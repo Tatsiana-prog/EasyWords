@@ -18,13 +18,13 @@
   font-weight: 700;
   line-height: 1;
 }
-@media (max-width: 575px) { 
+@media (max-width: 575px) {
   .SectionJoinCommunity {
     padding-top: 140px;
   }
 .SectionJoinCommunity p {
     font-size: 14px;
-    margin-top: 16px;   
+    margin-top: 16px;
     width: 50%;
     margin-right: auto;
     margin-left: auto;

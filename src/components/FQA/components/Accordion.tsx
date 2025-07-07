@@ -1,4 +1,3 @@
-// src/components/Accordion.tsx
 import React, { useState } from 'react';
 import styles from "./Accordion.module.css"
 
@@ -25,7 +24,6 @@ export const Accordion: React.FC<AccordionProps> = ({ items }) => {
             <div className={styles.AccordionItemQuestion} onClick={() => toggleItem(index)} style={{ cursor: 'pointer' }}>
                 <h4 >
                     {item.question}
-                    
                 </h4>
                 <span className={`${styles.Arrow} ${openIndex === index ? styles.Open : ''}`}>
                         <svg width="18" height="10" viewBox="0 0 18 10" fill="none" xmlns="http://www.w3.org/2000/svg">

@@ -1,7 +1,6 @@
 import styles from "../SignIn/SingIn.module.css";
 import { Header } from "../../Header/Header";
 import { SignInForm } from "./components/SignInForm";
-// import { ResetPasswordForm } from "../ResetPassword/components/ResetPasswordForm/ResetPasswordForm";
 
 export const SignIn: React.FC = () => {
   return (

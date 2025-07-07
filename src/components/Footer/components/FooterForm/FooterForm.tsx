@@ -17,7 +17,7 @@ export const FooterForm: React.FC = () => {
     mode: "onBlur",
   });
 
-  const onSubmit = (data: FormData) => { // Указываем правильный тип
+  const onSubmit = (data: FormData) => {
     console.log(data);
     reset();
   };

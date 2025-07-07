@@ -8,7 +8,7 @@ interface ButtonLinkProps {
   variant?: "blue" | "white";
   children?: React.ReactNode;
   target?: string;
-  rel?: string; // Make the 'rel' property optional
+  rel?: string;
 }
 
 export const ButtonLink: React.FC<ButtonLinkProps> = ({

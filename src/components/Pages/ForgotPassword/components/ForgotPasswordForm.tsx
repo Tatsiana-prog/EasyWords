@@ -30,9 +30,7 @@ export const ForgotPasswordForm: React.FC = () => {
     setLoading(true);
     try {
       const payload = { email: data.Email };
-
-      // Attempt to send in JSON format
-      const response = await api.post("/auth/forgot-password", payload, {
+        const response = await api.post("/auth/forgot-password", payload, {
         headers: { "Content-Type": "application/json" },
       });
 

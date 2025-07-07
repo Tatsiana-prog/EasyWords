@@ -1,6 +1,5 @@
-// src/components/PasswordStrengthIndicator/PasswordStrengthIndicator.tsx
 import React from 'react';
-import styles from './PasswordStrengthIndicator.module.css'; // Стили мы создадим ниже
+import styles from './PasswordStrengthIndicator.module.css';
 
 interface Requirement {
   id: string;
@@ -8,7 +7,6 @@ interface Requirement {
   text: string;
 }
 
-// Список всех требований к паролю
 const requirements: Requirement[] = [
   { id: 'length', regex: /.{6,}/, text: 'Минимум 6 символов' },
   { id: 'lowercase', regex: /[a-zа-я]/, text: 'Одна строчная буква (a-zа-я)' },
@@ -28,7 +26,6 @@ export const PasswordStrengthIndicator: React.FC<Props> = ({ password = '' }) =>
         const isValid = req.regex.test(password);
         return (
           <li key={req.id} className={isValid ? styles.valid : styles.invalid}>
-            {/* Используем SVG для галочки и крестика для лучшего вида */}
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               {isValid
                 ? <path d="M20 6L9 17L4 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>

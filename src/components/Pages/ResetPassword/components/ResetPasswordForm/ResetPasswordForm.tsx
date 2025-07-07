@@ -1,7 +1,5 @@
-// Файл ResetPasswordForm.tsx
 import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
-// ИЗМЕНЕНО: Подключаем новые, правильные стили
 import styles from "../../../../PreOrderOffer/components/PreOrderForm/PreOrderForm.module.css";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -17,7 +15,6 @@ interface FormInputs {
 const EyeIcon = () => <img src={IconOpen} alt="иконка" />;
 const EyeOffIcon = () => <img src={IconClose} alt="иконка" />;
 
-// Убрали экспорт по умолчанию, т.к. были ошибки при сборке. Если нужно, верните `export default`.
 export const ResetPasswordForm: React.FC = () => {
   const [isApplicationVisible, setApplicationVisible] = useState(false);
   const [searchParams] = useSearchParams();
@@ -30,9 +27,9 @@ export const ResetPasswordForm: React.FC = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting, isValid }, // Добавим isValid для блокировки кнопки
+    formState: { errors, isSubmitting, isValid },
     watch,
-  } = useForm<FormInputs>({ mode: "onChange" }); // Изменим на onChange для большей интерактивности
+  } = useForm<FormInputs>({ mode: "onChange" });
   const password = watch("password");
 
   const closeApplication = () => {
@@ -40,7 +37,6 @@ export const ResetPasswordForm: React.FC = () => {
   };
 
   useEffect(() => {
-    // ... логика useEffect остается без изменений
     const resetToken = searchParams.get("token");
     if (resetToken) {
       setToken(resetToken);
@@ -56,7 +52,6 @@ export const ResetPasswordForm: React.FC = () => {
   }, [searchParams, isApplicationVisible]);
 
   const onSubmit = async (data: FormInputs) => {
-    // ... логика onSubmit остается без изменений
     setError("");
     setLoading(true);
     if (!token) {
@@ -153,7 +148,6 @@ export const ResetPasswordForm: React.FC = () => {
           </div>
         </div>
 
-        {/* Блок с ошибкой от API */}
         {error && <div className={styles.ApiError}>{error}</div>}
 
         <input
@@ -164,14 +158,12 @@ export const ResetPasswordForm: React.FC = () => {
         />
       </form>
 
-      {/* ПЕРЕМЕЩЕНО: Блок с подсказками теперь находится под формой */}
       <div className={styles.PasswordHints}>
         <PasswordStrengthIndicator password={password} />
       </div>
       {isApplicationVisible && (
         <>
-          {/* Убедитесь, что для оверлея есть глобальный стиль или добавьте его */}
-           <div className={styles.overlay} />
+          <div className={styles.overlay} />
           <ApplicationNewPassword onBack={closeApplication} />
         </>
       )}
